@@ -168,13 +168,13 @@
       linear-gradient(168deg, #101A33 0%, #0A1020 74%);
     overflow:hidden;
   }
-  .slot:not(:has(img))::after{
+  .slot::after{
     content:attr(data-slot);
     position:absolute;left:14px;bottom:11px;
     font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
     color:var(--text-3);
   }
-  .slot img{width:100%;height:100%;object-fit:cover;display:block}
+  .slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .slot-note{
     font-family:var(--mono);font-size:10px;letter-spacing:.06em;
     color:var(--text-3);margin:0 0 30px;
@@ -295,7 +295,7 @@
 
 
   .vid{margin:18px 0 6px;max-width:100%}
-  .vid video{display:block;width:100%;aspect-ratio:16/9;max-width:100%;
+  .vid iframe{display:block;width:100%;aspect-ratio:16/9;max-width:100%;
     border:1px solid var(--line-soft);background:#0A1020}
   .vidcap{margin-top:9px;font-family:var(--mono);font-size:10px;
     letter-spacing:.06em;color:var(--text-3)}
@@ -494,8 +494,8 @@
 
       <h3>O pipeline filmado</h3>
       <p>Todo mundo no mercado mostra o filme final. Quase ninguém mostra como chegou lá, porque quase ninguém tem processo estável o bastante para ser filmado.</p>
-      <figure class="vid"><video controls preload="metadata" playsinline><source src="videos/brilhante-process.mp4" type="video/mp4">Seu navegador não reproduz este vídeo.</video><figcaption class="vidcap">Brilhante — o processo</figcaption></figure>
-      <figure class="vid"><video controls preload="metadata" playsinline><source src="videos/clear-process.mp4" type="video/mp4">Seu navegador não reproduz este vídeo.</video><figcaption class="vidcap">Clear — o processo</figcaption></figure>
+      <figure class="vid"><iframe src="https://drive.google.com/file/d/1ijnpi2nd0V8p27RtitXNgDMf4VISvFWY/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Brilhante — o processo"></iframe><figcaption class="vidcap">Brilhante — o processo</figcaption></figure>
+      <figure class="vid"><iframe src="https://drive.google.com/file/d/1BnFYaSiPwmsWwS8mA84XyfoNFrtcu5w3/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Clear — o processo"></iframe><figcaption class="vidcap">Clear — o processo</figcaption></figure>
     </section>
 
     <!-- ======== 04 GOOGLE ======== -->
@@ -531,34 +531,34 @@
         <p class="role">Primeiro filme 100% IA da Unilever Brasil · Droga5 · Google</p>
         <p>Para o Google, a primeira marca de Home Care no país a usar IA em conteúdo publicitário dentro de um ecossistema completo de mídia e mensuração. Mais de 1.000 imagens estáticas e mais de 850 cenas de vídeo geradas com IA.</p>
         <p class="role">Direção Von Harbou · Fábio Hacker e Luciano Mathias</p>
-        <figure class="vid"><video controls preload="metadata" playsinline><source src="videos/brilhante.mp4" type="video/mp4">Seu navegador não reproduz este vídeo.</video><figcaption class="vidcap">Brilhante Perfume Extraordinário</figcaption></figure>
+        <figure class="vid"><iframe src="https://drive.google.com/file/d/1Zdc46jBHzgpXUthEOSHJUtTGr9SvmGvQ/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Brilhante Perfume Extraordinário"></iframe><figcaption class="vidcap">Brilhante Perfume Extraordinário</figcaption></figure>
       </div>
 
       <div class="case">
         <div class="case-head"><span class="n">02</span><h3>Clear Men · Unilever</h3></div>
         <p class="role">Com Vini Jr. · múltiplas versões e formatos</p>
         <p>Craft com talento global reconhecível, entregue em corte de diretor, versões para YouTube e TV, adaptações e upscales.</p>
-        <figure class="vid"><video controls preload="metadata" playsinline><source src="videos/clear-vinijr.mp4" type="video/mp4">Seu navegador não reproduz este vídeo.</video><figcaption class="vidcap">Clear Men — director's cut</figcaption></figure>
+        <figure class="vid"><iframe src="https://drive.google.com/file/d/1xjgeCdo7wL_JBoLcVDcoAl9bDpZixLG_/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Clear Men — director's cut"></iframe><figcaption class="vidcap">Clear Men — director's cut</figcaption></figure>
       </div>
 
       <div class="case">
         <div class="case-head"><span class="n">03</span><h3>KFC</h3></div>
         <p class="role">Velocidade e adaptação de formato</p>
         <p>O mesmo filme em corte digital e em 9:16, em ciclo curto.</p>
-        <figure class="vid"><video controls preload="metadata" playsinline><source src="videos/kfc-digital.mp4" type="video/mp4">Seu navegador não reproduz este vídeo.</video><figcaption class="vidcap">KFC — corte digital</figcaption></figure>
+        <figure class="vid"><iframe src="https://drive.google.com/file/d/1sFkHvYAifmylXHBHSK0Lo4utenkvmePf/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="KFC — corte digital"></iframe><figcaption class="vidcap">KFC — corte digital</figcaption></figure>
       </div>
 
       <div class="case">
         <div class="case-head"><span class="n">04</span><h3>CIF · Unilever</h3></div>
         <p class="role">Volume e recorrência no mesmo grupo anunciante</p>
-        <figure class="vid"><video controls preload="metadata" playsinline><source src="videos/cif-especialistas.mp4" type="video/mp4">Seu navegador não reproduz este vídeo.</video><figcaption class="vidcap">CIF Especialistas</figcaption></figure>
+        <figure class="vid"><iframe src="https://drive.google.com/file/d/1u8WEPuQboQkh2iIgcANyyTeQsGBohQ5P/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="CIF Especialistas"></iframe><figcaption class="vidcap">CIF Especialistas</figcaption></figure>
       </div>
 
       <div class="case">
         <div class="case-head"><span class="n">05</span><h3>Natura</h3></div>
         <p class="role">Dezembro de 2024 · o início do processo de IA</p>
         <p>De onde a empresa partiu. Entre este filme e o Brilhante há dois anos e um salto de método.</p>
-        <figure class="vid"><video controls preload="metadata" playsinline><source src="videos/natura-03.mp4" type="video/mp4">Seu navegador não reproduz este vídeo.</video><figcaption class="vidcap">Natura — filme 03</figcaption></figure>
+        <figure class="vid"><iframe src="https://drive.google.com/file/d/1r_i8z6DxC6yEfpWfsqIKVw9wzJQS978x/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Natura — filme 03"></iframe><figcaption class="vidcap">Natura — filme 03</figcaption></figure>
       </div>
 
       <div class="slot"><img src="img/06-cases.webp" alt="Fotogramas suspensos no escuro" loading="lazy" width="2560" height="1429"></div>
