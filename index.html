@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Insula AI Information Memorandum</title>
+<style>*{box-sizing:border-box}img{max-width:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#080D18;
+    --ground:#0A1020;
+    --surface:#111931;
+    --surface-2:#16203C;
+    --line:#222E4E;
+    --line-soft:#1A2440;
+    --text:#E9E5DC;
+    --text-2:#A7AEC2;
+    --text-3:#6F7893;
+    --amber:#D9A566;
+    --amber-dim:#8F7148;
+    --amber-wash:rgba(217,165,102,.10);
+    --serif:"Bodoni Moda", "Didot", "Times New Roman", serif;
+    --sans:"Archivo", "Helvetica Neue", Arial, sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --maxw:92ch;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- shell ---------- */
+  .shell{display:grid;grid-template-columns:minmax(0,1fr);}
+  @media(min-width:1040px){
+    .shell{grid-template-columns:232px minmax(0,1fr);}
+  }
+
+  nav.rail{
+    display:none;
+    position:sticky;
+    top:env(safe-area-inset-top, 0px);
+    align-self:start;
+    height:100vh;
+    padding:40px 24px 40px 32px;
+    border-right:1px solid var(--line-soft);
+  }
+  @media(min-width:1040px){nav.rail{display:block}}
+  .rail-mark{
+    font-family:var(--serif);
+    font-size:19px;
+    letter-spacing:.04em;
+    margin-bottom:34px;
+    color:var(--text);
+  }
+  .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+  .rail a{
+    display:flex;gap:10px;align-items:baseline;
+    text-decoration:none;color:var(--text-3);
+    font-size:12.5px;letter-spacing:.02em;
+    padding:5px 0;
+    transition:color .18s ease;
+  }
+  .rail a:hover,.rail a:focus-visible{color:var(--text)}
+  .rail a .n{font-family:var(--mono);font-size:10.5px;color:var(--amber-dim);letter-spacing:.06em}
+  .rail-foot{
+    margin-top:30px;padding-top:18px;border-top:1px solid var(--line-soft);
+    font-family:var(--mono);font-size:9.5px;line-height:1.7;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--text-3);
+  }
+
+  main{min-width:0}
+  section{padding-inline:20px}
+  @media(min-width:720px){section{padding-inline:56px}}
+  @media(min-width:1040px){section{padding-inline:min(88px,7vw)}}
+  .in{max-width:var(--maxw);position:relative;z-index:1}
+
+  /* ---------- sections ---------- */
+  section{
+    max-width:none;
+    padding-block:84px;
+    position:relative;
+    isolation:isolate;
+    border-bottom:1px solid var(--line-soft);
+    scroll-margin-top:24px;
+  }
+  section:last-of-type{border-bottom:0}
+
+  .eyebrow{
+    display:flex;align-items:center;gap:12px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--amber);margin-bottom:22px;
+  }
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  h1{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(40px,8.4vw,74px);line-height:1.02;letter-spacing:-.015em;
+    margin:0 0 20px;text-wrap:balance;max-width:14ch;
+  }
+  h2{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(27px,4.4vw,40px);line-height:1.13;letter-spacing:-.01em;
+    margin:0 0 16px;text-wrap:balance;max-width:26ch;
+  }
+  h3{
+    font-family:var(--sans);font-weight:600;
+    font-size:15px;letter-spacing:.005em;
+    margin:38px 0 10px;color:var(--text);
+  }
+  p{margin:0 0 17px;color:var(--text-2);max-width:66ch}
+  p strong{color:var(--text);font-weight:600}
+  .lede{font-size:18.5px;line-height:1.56;color:var(--text);max-width:62ch}
+  a{color:var(--amber)}
+
+  ul.plain{list-style:none;margin:0 0 17px;padding:0;display:flex;flex-direction:column;gap:11px}
+  ul.plain li{
+    color:var(--text-2);padding-left:18px;position:relative;max-width:66ch;
+  }
+  ul.plain li::before{
+    content:"";position:absolute;left:0;top:.72em;
+    width:5px;height:1px;background:var(--amber-dim);
+  }
+  ul.plain li strong{color:var(--text);font-weight:600}
+
+  /* ---------- cover ---------- */
+  .cover{
+    border-bottom:1px solid var(--line-soft);
+    padding-block:clamp(120px,26vh,210px) clamp(70px,14vh,120px);
+  }
+  .cover-inner{max-width:100%}
+  .cover .kicker{
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--text-3);margin-bottom:30px;
+  }
+  .cover .sub{
+    font-size:19px;color:var(--text-2);max-width:56ch;margin:0 0 34px;
+  }
+  .confidential{
+    display:inline-flex;align-items:center;gap:9px;
+    border:1px solid var(--line);border-radius:2px;
+    padding:7px 13px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--text-3);
+  }
+  .confidential::before{
+    content:"";width:5px;height:5px;border-radius:50%;background:var(--amber);flex:none;
+  }
+
+  /* ---------- fundos ---------- */
+  section.bg::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background-image:var(--bg);
+    background-size:cover;background-position:center;
+    opacity:.38;
+  }
+  section.bg::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      linear-gradient(90deg, rgba(10,16,32,.97) 0%, rgba(10,16,32,.86) 46%, rgba(10,16,32,.55) 100%),
+      linear-gradient(180deg, rgba(10,16,32,.9) 0%, rgba(10,16,32,.35) 28%, rgba(10,16,32,.35) 72%, rgba(10,16,32,.9) 100%);
+  }
+  section.cover.bg::before{opacity:.55}
+  @media(max-width:720px){
+    section.bg::before{opacity:.3}
+    section.bg::after{background:linear-gradient(180deg, rgba(10,16,32,.9), rgba(10,16,32,.78))}
+  }
+
+  /* ---------- image slot ---------- */
+  .slot{
+    position:relative;
+    aspect-ratio:2.6/1;max-width:100%;
+    margin:46px 0 10px;
+    border:1px solid var(--line-soft);
+    background:
+      radial-gradient(120% 90% at 78% 18%, rgba(217,165,102,.13), transparent 62%),
+      linear-gradient(168deg, #101A33 0%, #0A1020 74%);
+    overflow:hidden;
+  }
+  .slot::after{
+    content:attr(data-slot);
+    position:absolute;left:14px;bottom:11px;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--text-3);
+  }
+  .slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .slot-note{
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;
+    color:var(--text-3);margin:0 0 30px;
+  }
+
+  /* ---------- stats ---------- */
+  .stats{
+    display:grid;gap:1px;background:var(--line-soft);
+    border:1px solid var(--line-soft);
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    margin:30px 0;
+  }
+  .stat{background:var(--ground);padding:20px 18px}
+  .stat .v{
+    font-family:var(--serif);font-size:clamp(28px,5vw,38px);line-height:1;
+    color:var(--text);font-variant-numeric:tabular-nums;
+  }
+  .stat .v span{font-size:.52em;color:var(--amber);margin-left:3px}
+  .stat .k{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--text-3);margin-top:9px;line-height:1.55;
+  }
+
+  /* ---------- tables ---------- */
+  .tw{overflow-x:auto;margin:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  table{border-collapse:collapse;width:100%;min-width:440px;font-size:14px}
+  th,td{
+    text-align:left;padding:12px 16px 12px 0;
+    border-bottom:1px solid var(--line-soft);
+    vertical-align:top;color:var(--text-2);
+  }
+  tr:last-child td{border-bottom:0}
+  th{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--text-3);font-weight:400;padding-top:14px;padding-bottom:11px;
+  }
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--text)}
+  td strong{color:var(--text);font-weight:600}
+
+  /* ---------- pipeline ---------- */
+  .flow{
+    display:flex;flex-wrap:wrap;gap:1px;background:var(--line-soft);
+    border:1px solid var(--line-soft);margin:28px 0;
+  }
+  .step{
+    background:var(--ground);padding:15px 14px;flex:1 1 130px;min-width:0;
+  }
+  .step .n{font-family:var(--mono);font-size:9.5px;color:var(--amber-dim);letter-spacing:.1em}
+  .step .t{font-size:13.5px;color:var(--text);margin-top:6px;line-height:1.4}
+  .step.gate{background:var(--surface)}
+  .step.gate .n{color:var(--amber)}
+  .step.gate .t::after{content:" ◆";color:var(--amber);font-size:9px;vertical-align:middle}
+
+  /* ---------- cases ---------- */
+  .case{
+    border-top:1px solid var(--line-soft);
+    padding-block:32px;
+  }
+  .case:first-of-type{border-top:0;padding-top:12px}
+  .case-head{display:flex;gap:14px;align-items:baseline;margin-bottom:6px}
+  .case-head .n{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.1em;flex:none}
+  .case-head h3{margin:0;font-size:20px;font-family:var(--serif);font-weight:400;letter-spacing:-.005em}
+  .case .role{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--text-3);margin:0 0 12px 0;
+  }
+  .video-slot{
+    display:block;text-decoration:none;
+    aspect-ratio:16/9;border:1px solid var(--line-soft);
+    background:
+      radial-gradient(130% 110% at 30% 22%, rgba(217,165,102,.09), transparent 58%),
+      linear-gradient(162deg,#0F1830,#0A1020);
+    margin:16px 0 4px;position:relative;
+    transition:border-color .2s ease, background-color .2s ease;
+  }
+  .video-slot:hover,.video-slot:focus-visible{border-color:var(--amber-dim)}
+  .video-slot .play{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:46px;height:46px;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--amber);font-size:12px;padding-left:2px;
+    transition:border-color .2s ease;
+  }
+  .video-slot:hover .play{border-color:var(--amber-dim)}
+  .video-slot .fname{
+    position:absolute;left:14px;bottom:11px;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--text-3);
+  }
+  .video-slot .open{
+    position:absolute;right:14px;bottom:11px;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--amber-dim);
+  }
+  .video-slot .ttl{
+    position:absolute;left:14px;top:13px;
+    font-size:13px;color:var(--text-2);
+  }
+
+
+  /* ---------- video embeds ---------- */
+  .vid{margin:18px 0 6px;max-width:100%}
+  .vid iframe{
+    display:block;width:100%;aspect-ratio:16/9;max-width:100%;
+    border:1px solid var(--line-soft);background:#0A1020;
+  }
+  .vidcap{
+    display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between;align-items:baseline;
+    margin-top:9px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--text-3);
+  }
+  .vidcap code{font-family:var(--mono);color:var(--text-3)}
+  .vidcap a{color:var(--amber-dim);text-decoration:none;white-space:nowrap}
+  .vidcap a:hover,.vidcap a:focus-visible{color:var(--amber)}
+  .vidnote{
+    font-family:var(--mono);font-size:10px;line-height:1.7;letter-spacing:.05em;
+    color:var(--text-3);border-left:2px solid var(--line);padding-left:14px;margin:18px 0 0;
+  }
+
+
+  .vid{margin:18px 0 6px;max-width:100%}
+  .vid iframe{display:block;width:100%;aspect-ratio:16/9;max-width:100%;
+    border:1px solid var(--line-soft);background:#0A1020}
+  #teaser{padding-block:54px}
+  .vid-lead{margin:0}
+  .vid-lead iframe{border-color:var(--line)}
+  .vidcap{margin-top:9px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--text-3)}
+  .vidcap a{color:var(--amber-dim);text-decoration:none}
+  .vidcap a:hover{color:var(--amber)}
+
+  /* ---------- chart ---------- */
+  figure{margin:30px 0}
+  figure svg{width:100%;height:auto;display:block}
+  figcaption{
+    font-family:var(--mono);font-size:10px;letter-spacing:.05em;line-height:1.7;
+    color:var(--text-3);margin-top:12px;max-width:62ch;
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0}
+  .legend span{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--text-3);
+  }
+  .legend i{width:9px;height:9px;display:block;flex:none}
+
+  /* ---------- callout ---------- */
+  .note{
+    border-left:2px solid var(--amber-dim);
+    padding:2px 0 2px 18px;margin:26px 0;
+  }
+  .note p:last-child{margin-bottom:0}
+
+  .gated{
+    border:1px solid var(--line);
+    padding:18px 20px;margin:26px 0;
+    background:var(--surface);
+  }
+  .gated .lbl{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--amber);margin-bottom:8px;
+  }
+  .gated p{margin:0;font-size:14.5px}
+
+  /* ---------- contact / footer ---------- */
+  .contacts{
+    display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    margin:28px 0;
+  }
+  .contact .nm{font-family:var(--serif);font-size:20px;color:var(--text)}
+  .contact .rl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:5px}
+  .contact .ml{font-size:13.5px;margin-top:7px;word-break:break-word}
+
+  footer{
+    max-width:var(--maxw);
+    padding-block:34px 60px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.07em;line-height:1.9;
+    color:var(--text-3);
+  }
+
+  a:focus-visible,summary:focus-visible{outline:1px solid var(--amber);outline-offset:3px}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <nav class="rail" aria-label="Seções">
+    <div class="rail-mark">Insula AI</div>
+    <ol>
+      <li><a href="#tese"><span class="n">01</span> A tese</a></li>
+      <li><a href="#empresa"><span class="n">02</span> A empresa</a></li>
+      <li><a href="#metodo"><span class="n">03</span> O método</a></li>
+      <li><a href="#google"><span class="n">04</span> Google</a></li>
+      <li><a href="#cases"><span class="n">05</span> Cases</a></li>
+      <li><a href="#mercado"><span class="n">06</span> Mercado</a></li>
+      <li><a href="#numeros"><span class="n">07</span> Números</a></li>
+      <li><a href="#crescimento"><span class="n">08</span> Crescimento e riscos</a></li>
+      <li><a href="#contato"><span class="n">09</span> Contato</a></li>
+    </ol>
+    <div class="rail-foot">
+      Information<br>Memorandum<br>Set. 2026<br><br>Confidencial
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ======== COVER ======== -->
+    <section class="cover bg" id="capa" style="--bg:url(img/01-capa.webp)">
+<div class="in">
+      <div class="cover-inner">
+        <p class="kicker">Information Memorandum · Setembro de 2026</p>
+        <h1>Insula AI</h1>
+        <p class="sub">Produtora de filmes publicitários com IA generativa e craft de produtora tradicional, com pipeline proprietário que vai do filme 100% gerado à pré-produção de campanhas com set e talento.</p>
+        <div class="confidential">Documento confidencial · uso restrito sob NDA</div>
+      </div>
+    </div>
+</section>
+
+    <!-- ======== TEASER ======== -->
+    <section id="teaser">
+<div class="in">
+      <figure class="vid vid-lead"><iframe src="https://www.youtube-nocookie.com/embed/lUPPoYyPSsI?rel=0&amp;modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Teaser Insula AI"></iframe><figcaption class="vidcap">Teaser institucional &middot; Insula AI &middot; versão em inglês</figcaption></figure>
+    </div>
+</section>
+
+    <!-- ======== 01 TESE ======== -->
+    <section id="tese" class="bg" style="--bg:url(img/02-tese.webp)">
+<div class="in">
+      <div class="eyebrow"><span>01 — A tese</span></div>
+      <h2>A produção publicitária está sendo reprecificada, e a Insula já opera do outro lado dessa curva.</h2>
+      <p class="lede">Poucas produtoras no mundo faturaram com IA generativa em cliente tier-1, com craft de filme tradicional e um pipeline que entrega em 18 dias o que a produção convencional entrega em meses. A Insula é uma delas — e faz isso dentro do ecossistema Google, de ponta a ponta.</p>
+
+      <h3>Quatro argumentos</h3>
+      <ul class="plain">
+        <li><strong>A pressão é de custo e de volume, não de tecnologia.</strong> Anunciante e agência precisam de mais peças, mais adaptações e mais versões por campanha, com orçamento igual ou menor. A produção tradicional não escala nesse eixo: cada diária extra é custo linear.</li>
+        <li><strong>A Insula já opera desse jeito, e há número próprio para provar.</strong> Desde 2023, toda a receita da empresa vem de projetos com IA no processo — R$ 8,7 milhões entre 2023 e julho de 2026 — seja gerando o filme inteiro, seja sustentando a pré-produção de campanhas com set e talento. A economia apurada nos jobs de IA chega a 63,7% contra o equivalente tradicional.</li>
+        <li><strong>O gargalo migrou de tecnologia para craft — e o acesso não é commodity.</strong> Qualquer um assina os mesmos modelos. O que não se compra é direção, curadoria e a capacidade de aprovar uma peça num fluxo de agência e cliente global. Do outro lado, a posição da Insula dentro do ecossistema Google não se replica por assinatura: integração técnica direta, modelos em preview em produção comercial paga, residência no Google Campus e um benefício de mídia que a Insula leva ao cliente.</li>
+        <li><strong>Quem compra, compra acesso e método.</strong> Holdings e redes globais estão montando capacidade de IA por aquisição porque construir leva anos. A Insula entrega pipeline documentado, portfólio aprovado por clientes tier-1 e uma integração com o Google que funciona como incubadora e aceleradora do negócio.</li>
+      </ul>
+    </div>
+</section>
+
+    <!-- ======== 02 EMPRESA ======== -->
+    <section id="empresa">
+<div class="in">
+      <div class="eyebrow"><span>02 — A empresa</span></div>
+      <h2>Quatro pessoas no núcleo, uma rede de direção acionada por projeto.</h2>
+      <p>A Insula AI nasceu em maio de 2025 como label dos sócios da TRIO Hub, produtora com quinze anos de mercado e clientes tier-1. A operação com IA começou antes, em março de 2023, e desde então nenhum projeto da casa passou sem ela.</p>
+
+      <div class="stats">
+        <div class="stat"><div class="v">R$&nbsp;8,7<span>mi</span></div><div class="k">Receita com IA no processo<br>2023 a jul/2026</div></div>
+        <div class="stat"><div class="v">18<span>dias</span></div><div class="k">Do roteiro ao filme final<br>três gates humanos</div></div>
+        <div class="stat"><div class="v">5<span>anos</span></div><div class="k">Recompra do maior cliente<br>Colgate-Palmolive</div></div>
+        <div class="stat"><div class="v">0</div><div class="k">Capital externo<br>cap table 100% fundadores</div></div>
+      </div>
+
+      <div class="slot"><img src="img/03-empresa.webp" alt="Partículas suspensas num facho de luz de set" loading="lazy" width="2560" height="1429"></div>
+
+      <h3>Linha do tempo</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Quando</th><th>Marco</th></tr></thead>
+          <tbody>
+            <tr><td class="num">Mar. 2023</td><td>Primeira cena text-to-video gerada — <em>man walking in the sand</em>. A partir daí, IA em todos os projetos da casa.</td></tr>
+            <tr><td class="num">2023–2024</td><td>Primeiros jobs de IA faturados em cliente real: Bradesco, Pilão, Natura.</td></tr>
+            <tr><td class="num">Mai. 2025</td><td>Lançamento público da Insula AI como label, com repercussão em Meio &amp; Mensagem e Grandes Nomes da Propaganda.</td></tr>
+            <tr><td class="num">2025</td><td>Coautoria do primeiro Guia de Boas Práticas de IA da APRO.</td></tr>
+            <tr><td class="num">2026</td><td><strong>Brilhante Perfume Extraordinário:</strong> primeiro filme 100% criado com IA da Unilever Brasil, com o Google e a Droga5 — mais de 1.000 imagens e 850 cenas geradas.</td></tr>
+            <tr><td class="num">2026</td><td>O Google deixa de ser ferramenta e passa a cliente, incubadora e parceiro comercial.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Time</h3>
+      <p>Núcleo fixo de quatro pessoas — Luciano Mathias, Caito Cyrillo, Sheila Souza e Alicia Rovath — e uma camada de direção acionada por projeto: Verena Puhm, Billy Boman, Alexandra BG e Fábio Hacker. Produção executiva em quatro praças — Brasil, Estados Unidos, Argentina e México — com capacidade de faturar e receber localmente em cada uma.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Pessoa</th><th>Função</th><th>Praça</th></tr></thead>
+          <tbody>
+            <tr><td>Alicia Rovath</td><td>Head of Production</td><td>Brasil</td></tr>
+            <tr><td>Luciano Mathias</td><td>Chief AI Officer</td><td>Reino Unido e EUA</td></tr>
+            <tr><td>Juano Alvarez</td><td>Executive Producer</td><td>Argentina e México</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <p>Estrutura de custo leve e margem que escala sem contratação proporcional — é o que um comprador estratégico procura quando quer plugar capacidade de IA numa operação de dez mil pessoas.</p>
+      </div>
+    </div>
+</section>
+
+    <!-- ======== 03 MÉTODO ======== -->
+    <section id="metodo" class="bg" style="--bg:url(img/04-pipeline.webp)">
+<div class="in">
+      <div class="eyebrow"><span>03 — O método</span></div>
+      <h2>Um pipeline com portões humanos em cada porta.</h2>
+      <p>Ciclo completo de cerca de 18 dias, contra semanas ou meses na produção tradicional. A IA acelera geração, viabilidade e iteração; direção e juízo crítico continuam humanos.</p>
+
+      <div class="flow">
+        <div class="step"><div class="n">01</div><div class="t">Brainstorm e conceito</div></div>
+        <div class="step"><div class="n">02</div><div class="t">Decupagem de roteiro</div></div>
+        <div class="step"><div class="n">03</div><div class="t">Moodboard</div></div>
+        <div class="step gate"><div class="n">04</div><div class="t">Aprovação do cliente</div></div>
+        <div class="step"><div class="n">05</div><div class="t">Desenvolvimento offline</div></div>
+        <div class="step"><div class="n">06</div><div class="t">Revisões</div></div>
+        <div class="step"><div class="n">07</div><div class="t">Online final</div></div>
+      </div>
+
+      <h3>Três gates contratuais</h3>
+      <p>A proposta comercial formaliza três aprovações sequenciais e cumulativas: proposta criativa, storyboard e filme final. Depois do storyboard aprovado não se altera, substitui ou inclui cena. Isso não é detalhe operacional — é controle de escopo, previsibilidade de margem e prova de que existe processo, não improviso.</p>
+
+      <h3>O stack</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Ferramenta</th><th>Função</th></tr></thead>
+          <tbody>
+            <tr><td>Mixboard</td><td>Brainstorm e concepção</td></tr>
+            <tr><td>Gemini</td><td>Cocriação e decupagem de roteiros, cenas e prompts</td></tr>
+            <tr><td>Nano Banana</td><td>Geração e edição de imagem</td></tr>
+            <tr><td>Veo + Google Omni</td><td>Geração e edição de vídeo</td></tr>
+            <tr><td>Lyria 3 Pro</td><td>Trilha</td></tr>
+            <tr><td>Google Cloud Text-to-Speech</td><td>Locução</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Mais de 90% do pipeline roda no ecossistema generativo do Google, com modelos ainda em preview usados em produção comercial paga. Veo e Imagen constam da lista de serviços indenizados do Google, que assume obrigação de indenização sobre reclamações de propriedade intelectual relativas ao output gerado.</p>
+
+      <h3>O pipeline filmado</h3>
+      <p>Todo mundo no mercado mostra o filme final. Quase ninguém mostra como chegou lá, porque quase ninguém tem processo estável o bastante para ser filmado. A Insula tem a captação do próprio pipeline em operação — Brilhante e Clear — disponível no data room.</p>
+    </div>
+</section>
+
+    <!-- ======== 04 GOOGLE ======== -->
+    <section id="google">
+<div class="in">
+      <div class="eyebrow"><span>04 — Google</span></div>
+      <h2>De ferramenta a cliente, incubadora e canal.</h2>
+      <p>O Google saiu de fornecedor de ferramenta para cliente pagante, incubadora e aceleradora, e a relação caminha para um quarto estágio: canal. É o argumento mais incomum deste documento.</p>
+
+      <h3>Como o dinheiro entra</h3>
+      <ul class="plain">
+        <li><strong>Crédito pré-pago.</strong> O Google contrata um pacote, a Insula produz para marcas do portfólio dele, e essa produção ancora o investimento de mídia da marca no ecossistema.</li>
+        <li><strong>Abatimento via DV360.</strong> A agência ou cliente com saldo na conta de mídia do Google abate o custo da produção desse saldo.</li>
+        <li><strong>Bonificação por investimento em mídia.</strong> Produção com a Insula somada a investimento mínimo de 10× o valor em mídia Google, e o Google bonifica o valor da produção.</li>
+      </ul>
+
+      <div class="note">
+        <p>Nos três casos o pagador é o Google — e, cada vez mais, é também o Google quem leva a Insula ao cliente final, apresentando a produtora a marcas do próprio portfólio. Um cliente grande é receita concentrada. Um parceiro que origina a demanda, financia o capital de giro e ainda abate o custo da produção para o anunciante é infraestrutura comercial.</p>
+      </div>
+
+      <p><strong>O que isso faz com a conversa comercial:</strong> em vez de disputar orçamento de produção, que é apertado e comparado centavo a centavo, a Insula disputa orçamento de mídia — ordens de grandeza maior e já aprovado. Na prática, o filme sai mais barato, ou sem custo líquido, para quem já investe em mídia Google.</p>
+
+      <div class="slot"><img src="img/05-google.webp" alt="Constelação de nós conectados" loading="lazy" width="2560" height="1429"></div>
+    </div>
+</section>
+
+    <!-- ======== 05 CASES ======== -->
+    <section id="cases" class="bg" style="--bg:url(img/06-cases.webp)">
+<div class="in">
+      <div class="eyebrow"><span>05 — Cases</span></div>
+      <h2>Cinco peças. A distância entre a primeira e a última é o argumento.</h2>
+      <p>A sequência não é cronológica: abre no marco de mercado e fecha na origem, para que a distância percorrida fique visível.</p>
+
+      <div class="case">
+        <div class="case-head"><span class="n">01</span><h3>Brilhante · Unilever</h3></div>
+        <p class="role">Primeiro filme 100% IA da Unilever Brasil · Droga5 · Google</p>
+        <p>Para o Google, a primeira marca de Home Care no país a usar IA em conteúdo publicitário dentro de um ecossistema completo de mídia e mensuração. Mais de 1.000 imagens estáticas e mais de 850 cenas de vídeo geradas com IA.</p>
+        <p class="role">Direção Von Harbou · Fábio Hacker e Luciano Mathias</p>
+        <figure class="vid"><iframe src="https://www.youtube-nocookie.com/embed/J1M5u7rtXgI?rel=0&amp;modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy" title="Brilhante Perfume Extraordinário"></iframe><figcaption class="vidcap">Brilhante Perfume Extraordinário</figcaption></figure>
+      </div>
+
+      <div class="case">
+        <div class="case-head"><span class="n">02</span><h3>Clear Men · Unilever</h3></div>
+        <p class="role">Com Vini Jr. · múltiplas versões e formatos</p>
+        <p>Craft com talento global reconhecível, entregue em corte de diretor, versões para YouTube e TV, adaptações e upscales.</p>
+        <figure class="vid"><iframe src="https://www.youtube-nocookie.com/embed/DWOG4plvsco?rel=0&amp;modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy" title="Clear Men — director's cut"></iframe><figcaption class="vidcap">Clear Men — director's cut</figcaption></figure>
+      </div>
+
+      <div class="case">
+        <div class="case-head"><span class="n">03</span><h3>KFC</h3></div>
+        <p class="role">Velocidade e adaptação de formato</p>
+        <p>O mesmo filme em corte digital e em 9:16, em ciclo curto.</p>
+        <figure class="vid"><iframe src="https://www.youtube-nocookie.com/embed/eqpwXXicUG4?rel=0&amp;modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy" title="KFC — corte digital"></iframe><figcaption class="vidcap">KFC — corte digital</figcaption></figure>
+      </div>
+
+      <div class="case">
+        <div class="case-head"><span class="n">04</span><h3>CIF · Unilever</h3></div>
+        <p class="role">Volume e recorrência no mesmo grupo anunciante</p>
+        <figure class="vid"><iframe src="https://www.youtube-nocookie.com/embed/ozeYzsmZTJU?rel=0&amp;modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy" title="CIF Especialistas"></iframe><figcaption class="vidcap">CIF Especialistas</figcaption></figure>
+      </div>
+
+      <div class="case">
+        <div class="case-head"><span class="n">05</span><h3>Natura</h3></div>
+        <p class="role">Dezembro de 2024 · marco de origem</p>
+        <p>O ponto de partida, mantido aqui de propósito. Entre este filme e o Brilhante está todo o salto de método da casa — e é essa inclinação, mais do que qualquer peça isolada, o que esta página quer demonstrar.</p>
+        <figure class="vid"><iframe src="https://www.youtube-nocookie.com/embed/PyXNMhzCaPA?rel=0&amp;modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy" title="Natura — filme 03"></iframe><figcaption class="vidcap">Natura — filme 03</figcaption></figure>
+      </div>
+    </div>
+</section>
+
+    <!-- ======== 06 MERCADO ======== -->
+    <section id="mercado">
+<div class="in">
+      <div class="eyebrow"><span>06 — Mercado e clientes</span></div>
+      <h2>A adoção já passou da metade dos anunciantes. O comprador está se armando neste eixo.</h2>
+
+      <div class="stats">
+        <div class="stat"><div class="v">50<span>%</span></div><div class="k">Anunciantes já usando IA<br>generativa em vídeo · IAB 2025</div></div>
+        <div class="stat"><div class="v">40<span>%</span></div><div class="k">Projeção de anúncios criados<br>com IA até 2026 · IAB</div></div>
+        <div class="stat"><div class="v">US$&nbsp;84,7<span>mi</span></div><div class="k">Exportação de produção<br>publicitária BR 2025 · APRO</div></div>
+        <div class="stat"><div class="v">R$&nbsp;95,2<span>bi</span></div><div class="k">Mercado publicitário BR 2025<br>Kantar Ibope Media</div></div>
+      </div>
+
+      <p>A exportação brasileira de produção publicitária cresceu 66% em dois anos — de US$ 51,1 milhões em 2023 para US$ 84,7 milhões em 2025, alta de 52% só no último ano. Produtora brasileira vendendo para fora deixou de ser exceção, e é exatamente o eixo em que as praças da Insula nos EUA, Argentina e México ganham sentido econômico.</p>
+
+      <p>Do outro lado da mesa, a WPP consolidou toda a produção global numa unidade só — cerca de dez mil pessoas em mais de quarenta cidades, anunciada em janeiro de 2026 e explicitamente apoiada em IA generativa. Isso valida a tese e identifica o comprador na mesma frase.</p>
+
+      <div class="slot"><img src="img/10-mercado.webp" alt="Névoa sobre o mar com um ponto de luz" loading="lazy" width="2560" height="1429"></div>
+
+      <h3>Carteira</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Agência</th><th>Clientes</th></tr></thead>
+          <tbody>
+            <tr><td>Droga5</td><td>Unilever — Brilhante, Clear, CIF</td></tr>
+            <tr><td>VML</td><td>Colgate-Palmolive, Dell</td></tr>
+            <tr><td>TBWA</td><td>KFC, Maturatta</td></tr>
+            <tr><td>Africa</td><td>Natura</td></tr>
+            <tr><td>BETC</td><td>Pilão</td></tr>
+            <tr><td>AlmapBBDO</td><td>Bradesco, Ambev</td></tr>
+            <tr><td>Leo Burnett</td><td>Samsung</td></tr>
+            <tr><td>Wieden+Kennedy</td><td>Subway, Mondelez</td></tr>
+            <tr><td>David</td><td>Burger King, Coca-Cola, Faber-Castell</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <p>Três das cinco peças em destaque são marcas Unilever. Um anunciante global adotando a mesma produtora em múltiplas marcas é muito mais difícil de conquistar do que um job avulso — e é o que sustenta a projeção de recorrência.</p>
+      </div>
+    </div>
+</section>
+
+    <!-- ======== 07 NÚMEROS ======== -->
+    <section id="numeros" class="bg" style="--bg:url(img/07-financeiro.webp)">
+<div class="in">
+      <div class="eyebrow"><span>07 — Números</span></div>
+      <h2>Desde 2023, toda a receita passa por IA em alguma etapa.</h2>
+      <p>O que muda de ano para ano não é se a IA está no processo — é quanto do filme final ela gera. 2022 é o último ano antes da virada, e está no gráfico exatamente para marcar o contraste.</p>
+
+      <figure>
+        <svg viewBox="0 0 720 330" role="img" aria-label="Receita faturada por ano, dividida entre produção tradicional, pré-produção com IA e filme gerado com IA, de 2022 a julho de 2026">
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="#6F7893">
+            <text x="0" y="16">R$ 6 mi</text>
+            <text x="0" y="78">R$ 4 mi</text>
+            <text x="0" y="140">R$ 2 mi</text>
+            <text x="0" y="202">R$ 0</text>
+          </g>
+          <g stroke="#1A2440" stroke-width="1">
+            <line x1="62" y1="12" x2="720" y2="12"></line>
+            <line x1="62" y1="74" x2="720" y2="74"></line>
+            <line x1="62" y1="136" x2="720" y2="136"></line>
+            <line x1="62" y1="198" x2="720" y2="198"></line>
+          </g>
+
+          <!-- 2022: tradicional 5.154.530 -> 160px -->
+          <rect x="86" y="38" width="86" height="160" fill="#2A3A61"></rect>
+          <!-- 2023: pre 2.781.778 -> 86px ; filme 39.900 -> 1.2px -->
+          <rect x="216" y="111" width="86" height="86" fill="#7E6743"></rect>
+          <rect x="216" y="110" width="86" height="1.5" fill="#D9A566"></rect>
+          <!-- 2024: pre 484.632 -> 15px ; filme 549.020 -> 17px -->
+          <rect x="346" y="183" width="86" height="15" fill="#7E6743"></rect>
+          <rect x="346" y="166" width="86" height="17" fill="#D9A566"></rect>
+          <!-- 2025: pre 1.925.616 -> 60px ; filme 594.585 -> 18px -->
+          <rect x="476" y="138" width="86" height="60" fill="#7E6743"></rect>
+          <rect x="476" y="120" width="86" height="18" fill="#D9A566"></rect>
+          <!-- 2026: pre 1.540.362 -> 48px ; filme 812.813 -> 25px -->
+          <rect x="606" y="150" width="86" height="48" fill="#7E6743"></rect>
+          <rect x="606" y="125" width="86" height="25" fill="#D9A566"></rect>
+
+          <g font-family="JetBrains Mono, monospace" font-size="10.5" fill="#A7AEC2" text-anchor="middle">
+            <text x="129" y="218">2022</text>
+            <text x="259" y="218">2023</text>
+            <text x="389" y="218">2024</text>
+            <text x="519" y="218">2025</text>
+            <text x="649" y="218">2026</text>
+            <text x="649" y="232" font-size="9" fill="#6F7893">jan–jul</text>
+          </g>
+
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="#6F7893" text-anchor="middle">
+            <text x="129" y="30">5,15</text>
+            <text x="259" y="102">2,82</text>
+            <text x="389" y="158">1,03</text>
+            <text x="519" y="112">2,52</text>
+            <text x="649" y="117">2,35</text>
+          </g>
+          <text x="720" y="256" font-family="JetBrains Mono, monospace" font-size="9" fill="#6F7893" text-anchor="end">valores em R$ milhões</text>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#2A3A61"></i> Produção tradicional</span>
+          <span><i style="background:#7E6743"></i> Pré-produção com IA</span>
+          <span><i style="background:#D9A566"></i> Filme gerado com IA</span>
+        </div>
+        <figcaption>Faturado bruto das duas PJs; repasses a fornecedor tratados como custo. 2026 até julho, incluindo as notas do Google. Base gerencial, não auditada — demonstrações contábeis no data room.</figcaption>
+      </figure>
+
+      <p>Em 2024, filmes inteiramente gerados com IA passaram da metade da receita. Em 2023, 2025 e 2026 pesaram campanhas com set e talento, em que a IA sustenta toda a pré-produção: decupagem, storyboard, testes de direção de arte e validação com o cliente antes de qualquer diária. É a mesma tecnologia em dois pontos da cadeia — num caso substituindo a filmagem, no outro comprimindo o ciclo e o risco antes dela.</p>
+
+      <h3>Eficiência</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Indicador</th><th>2024</th><th>2025</th></tr></thead>
+          <tbody>
+            <tr><td>Economia de produção nos jobs de IA</td><td class="num">63,7%</td><td class="num">24,0%</td></tr>
+            <tr><td>Economia de nota</td><td class="num">52%</td><td class="num">40%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A queda entre um ano e outro reflete subida na cadeia de valor: em 2024 os jobs de IA eram animatics e peças de menor complexidade; em 2025 entraram peças finalizadas de maior craft, com mais horas humanas.</p>
+
+      <div class="gated">
+        <div class="lbl">Disponível no data room</div>
+        <p>DRE gerencial mensal por cliente e por projeto (36 meses), EBITDA ajustado, fluxo de caixa, concentração de receita mês a mês, backlog contratado e margem por job. Liberação em fase avançada, sob NDA.</p>
+      </div>
+    </div>
+</section>
+
+    <!-- ======== 08 CRESCIMENTO ======== -->
+    <section id="crescimento">
+<div class="in">
+      <div class="eyebrow"><span>08 — Crescimento e riscos</span></div>
+      <h2>Cinco frentes, em ordem de impacto comercial no curto prazo.</h2>
+      <ul class="plain">
+        <li><strong>Benefício de mídia como alavanca comercial.</strong> Produção abatida do saldo de DV360 ou bonificada mediante investimento em mídia. Escala sem aumentar estrutura, e é o argumento que mais abre porta em agência e cliente direto.</li>
+        <li><strong>Pacote recorrente.</strong> Sair de projeto a projeto para contrato de volume — a frente que muda a qualidade da receita, e portanto o múltiplo.</li>
+        <li><strong>Google como canal.</strong> Cada filme da Insula amplifica receita de mídia do Google, e cada marca apresentada pelo Google entra na carteira sem custo de aquisição.</li>
+        <li><strong>Praças internacionais.</strong> Brasil, EUA, Argentina e México, com capacidade de faturar e receber localmente — inclusive quando o cliente não consegue remeter recursos para fora do país.</li>
+        <li><strong>Produto próprio.</strong> Ferramentas, automações e banco de imagem — o que muda a tese de serviço para produto.</li>
+      </ul>
+
+      <h3>Riscos e mitigantes</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Risco</th><th>Mitigante</th></tr></thead>
+          <tbody>
+            <tr><td>Concentração de receita</td><td>O Google é canal, não cliente único, e origina demanda de marcas distintas. Histórico de recompra de cinco anos no maior cliente, pipeline de 284 contatos mapeados em 212 agências e holdings, metas de diversificação.</td></tr>
+            <tr><td>Dependência do ecossistema Google</td><td>Ferramenta é substituível — método, gates e direção não mudam se o gerador mudar. A relação comercial é que é insubstituível, e favorável.</td></tr>
+            <tr><td>Key person nos sócios</td><td>Método documentado e filmado, segundo nível de liderança, redundância comercial nas praças.</td></tr>
+            <tr><td>Direito comercial sobre o output</td><td>Veo e Imagen constam da lista de serviços indenizados do Google, com obrigação de indenização sobre reclamações de PI relativas ao output gerado.</td></tr>
+            <tr><td>Prêmio de múltiplo em categoria nova</td><td>Dados operacionais repetíveis — ciclo, margem, recompra — e a curva setorial: metade dos anunciantes já usa IA generativa em vídeo.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="slot"><img src="img/08-riscos.webp" alt="Planos translúcidos sobrepostos" loading="lazy" width="2560" height="1429"></div>
+
+      <h3>Responsabilidade</h3>
+      <p>Luciano Mathias integrou o grupo de trabalho que desenvolveu o primeiro Guia de Boas Práticas de IA da APRO, com artigo de autoria própria entre os primeiros do guia. Os quatro princípios — neutralidade ativa, transparência e consentimento, conformidade legal e direitos autorais, e supervisão humana — são política interna da empresa, não citação de terceiro.</p>
+    </div>
+</section>
+
+    <!-- ======== 09 CONTATO ======== -->
+    <section id="contato" class="bg" style="--bg:url(img/09-fechamento.webp)">
+<div class="in">
+      <div class="eyebrow"><span>09 — Contato</span></div>
+      <h2>Assessoria da transação</h2>
+      <p>Todas as comunicações, perguntas e pedidos de informação sobre este memorando ou sobre uma possível transação envolvendo a Insula AI devem ser dirigidos à MAGMA.</p>
+
+      <div class="contacts">
+        <div class="contact">
+          <div class="nm">Marcos Magnani</div>
+          <div class="rl">MAGMA</div>
+          <div class="ml"><a href="mailto:mmagnani@magmabr.com">mmagnani@magmabr.com</a></div>
+        </div>
+        <div class="contact">
+          <div class="nm">Nelson Bandeira</div>
+          <div class="rl">MAGMA</div>
+          <div class="ml"><a href="mailto:nelson@magmabr.com">nelson@magmabr.com</a></div>
+        </div>
+        <div class="contact">
+          <div class="nm">Andrés Luminatti</div>
+          <div class="rl">MAGMA</div>
+          <div class="ml"><a href="mailto:aluminatti@magmabr.com">aluminatti@magmabr.com</a></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <footer>
+      Insula AI · insula-ai.com<br>
+      Este memorando foi preparado com base em informações fornecidas pela administração da companhia. Ao aceitar este material, o destinatário concorda em manter seu conteúdo confidencial e utilizá-lo exclusivamente para avaliar esta oportunidade específica.<br>
+      Todas as imagens desta página foram geradas pela Insula AI.
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>
