@@ -1,0 +1,134 @@
+name: Tratamentos
+
+# Dispara quando algo em tratamentos/ muda. As etapas determinísticas (imagens,
+# render, dashboard, verificação) rodam sempre; a redação com Claude só roda se
+# houver ANTHROPIC_API_KEY nos secrets. Sem chave nenhuma o workflow ainda
+# reconstrói as páginas a partir dos tratamento.json existentes.
+
+on:
+  push:
+    paths:
+      - 'tratamentos/**'
+      - '.github/workflows/tratamento.yml'
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Slug a reprocessar (vazio = todos)'
+        required: false
+        default: ''
+      forcar_imagens:
+        description: 'Regerar imagens que já existem'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tratamentos-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    # Commits feitos com o GITHUB_TOKEN não disparam workflows, então não há
+    # laço; a checagem de ator é cinto e suspensório.
+    if: github.actor != 'github-actions[bot]'
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      INSULA_IMG_MODEL: ${{ vars.INSULA_IMG_MODEL }}
+      INSULA_IMG_SIZE: ${{ vars.INSULA_IMG_SIZE }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Quais tratamentos têm entrada sem manifesto
+        id: pendentes
+        run: |
+          pendentes=""
+          for pasta in tratamentos/_entradas/*/; do
+            [ -d "$pasta" ] || continue
+            slug=$(basename "$pasta")
+            case "$slug" in _*) continue;; esac
+            if [ ! -f "tratamentos/$slug/tratamento.json" ]; then
+              pendentes="$pendentes $slug"
+            fi
+          done
+          echo "lista=$(echo $pendentes)" >> "$GITHUB_OUTPUT"
+          echo "Pendentes de redação:${pendentes:- nenhum}"
+
+      - name: Redação do tratamento (Claude)
+        if: steps.pendentes.outputs.lista != '' && env.ANTHROPIC_API_KEY != ''
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Siga a skill .claude/skills/tratamento/SKILL.md e escreva o
+            tratamento.json de cada um destes slugs, lendo as entradas em
+            tratamentos/_entradas/<slug>/:
+
+            ${{ steps.pendentes.outputs.lista }}
+
+            Pesquise as referências de verdade e confira título, autoria e ano
+            antes de citar. Escreva apenas os arquivos
+            tratamentos/<slug>/tratamento.json — não rode git, não faça commit
+            e não gere imagens: as etapas seguintes do workflow cuidam disso.
+          claude_args: '--allowed-tools Read,Write,Edit,Glob,Grep,WebSearch,WebFetch'
+
+      - name: Aviso — redação pulada
+        if: steps.pendentes.outputs.lista != '' && env.ANTHROPIC_API_KEY == ''
+        run: |
+          echo "::warning::Entradas sem tratamento.json (${{ steps.pendentes.outputs.lista }}) \
+          e sem ANTHROPIC_API_KEY. Rode /tratamento no Claude Code ou configure o secret."
+
+      - name: Imagens (nano banana)
+        run: |
+          alvo="${{ github.event.inputs.slug }}"
+          extra=""
+          [ "${{ github.event.inputs.forcar_imagens }}" = "true" ] && extra="--forcar"
+          if [ -n "$alvo" ]; then
+            slugs="$alvo"
+          else
+            slugs=$(find tratamentos -mindepth 2 -maxdepth 2 -name tratamento.json \
+              -printf '%h\n' | xargs -r -n1 basename | grep -v '^_' || true)
+          fi
+          for slug in $slugs; do
+            echo "::group::imagens $slug"
+            python3 tratamentos/_lib/tratamento.py imagens "$slug" $extra
+            echo "::endgroup::"
+          done
+
+      - name: Render e dashboard
+        run: python3 tratamentos/_lib/tratamento.py todos
+
+      - name: Playwright (opcional)
+        continue-on-error: true
+        run: |
+          pip install --quiet playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Verificar
+        run: python3 tratamentos/_lib/verificar.py
+
+      - name: Commitar o que foi gerado
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add tratamentos
+          if git diff --cached --quiet; then
+            echo 'Nada mudou.'
+            exit 0
+          fi
+          git commit -m 'Tratamentos: regenera páginas e dashboard [skip ci]'
+          for tentativa in 1 2 3 4; do
+            git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            echo "push falhou, tentativa $tentativa"
+            sleep $((2 ** tentativa))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done
+          exit 1

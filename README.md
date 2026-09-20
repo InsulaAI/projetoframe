@@ -1,16 +1,33 @@
-# Insula AI — Information Memorandum
+# Insula AI — InfoMemo e tratamentos
 
-Página estática do InfoMemo, publicada em `https://insulaai.github.io/projetoframe/`.
-Documento confidencial: não indexar, não divulgar link.
+Publicado em `https://insulaai.github.io/projetoframe/`.
+Material confidencial: não indexar, não divulgar link.
 
 ## Estrutura
 
-    index.html   página inteira — HTML, CSS e JS inline, sem build
-    img/         10 imagens de fundo (.webp, ~510 KB no total)
-    robots.txt   bloqueio de indexação
-    CLAUDE.md    convenções, decisões travadas e armadilhas do repositório
+    index.html     o Information Memorandum — HTML, CSS e JS inline, sem build
+    img/           10 imagens de fundo (.webp, ~510 KB no total)
+    robots.txt     bloqueio de indexação
+    CLAUDE.md      convenções, decisões travadas e armadilhas do repositório
+    tratamentos/   pipeline de tratamentos de direção — ver tratamentos/README.md
 
-Não há build, bundler nem dependência. Editar `index.html` e dar push é o ciclo completo.
+O InfoMemo não tem build, bundler nem dependência: editar `index.html` e dar push
+é o ciclo completo.
+
+## Tratamentos de direção
+
+`/tratamentos/` é um sistema à parte: entram deck de briefing, notas de produção e
+a visão do diretor; saem uma página no padrão craft da casa — com referências
+pesquisadas, moodboard gerado pelo nano banana e painel de produção — e um
+dashboard que indexa todas elas.
+
+```bash
+python3 tratamentos/_lib/tratamento.py novo <slug>   # cria a pasta de entradas
+/tratamento <slug>                                   # Claude Code redige e publica
+```
+
+Ou só dar push de `tratamentos/_entradas/<slug>/` e deixar a Action fazer.
+Instruções completas, esquema do `tratamento.json` e secrets: `tratamentos/README.md`.
 
 ## Vídeos
 

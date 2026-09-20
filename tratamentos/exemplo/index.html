@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>O silêncio antes da água · Exemplo · Insula AI</title>
+<meta name="description" content="Tratamento de demonstração do pipeline. Substitua ou apague esta pasta: ela existe para provar que build, dashboard e geração de imagem funcionam de ponta a ponta.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 32 32&#39;%3E%3Crect width=&#39;32&#39; height=&#39;32&#39; fill=&#39;%230A1020&#39;/%3E%3Ccircle cx=&#39;16&#39; cy=&#39;16&#39; r=&#39;5&#39; fill=&#39;%23D9A566&#39;/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#080D18;
+  --ground:#0A1020;
+  --surface:#111931;
+  --surface-2:#16203C;
+  --line:#222E4E;
+  --line-soft:#1A2440;
+  --text:#E9E5DC;
+  --text-2:#B3BACE;
+  --text-3:#7F889F;
+  --amber:#D9A566;
+  --amber-dim:#8F7148;
+  --amber-wash:rgba(217,165,102,.10);
+  --serif:"Bodoni Moda","Didot","Times New Roman",serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --maxw:92ch;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+img{max-width:100%}
+body{
+  margin:0;background:var(--ground);color:var(--text);
+  font-family:var(--sans);font-size:17px;line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+}
+html{scroll-behavior:smooth}
+
+/* ---------- shell ---------- */
+.shell{display:grid;grid-template-columns:minmax(0,1fr)}
+@media(min-width:1040px){.shell{grid-template-columns:232px minmax(0,1fr)}}
+nav.rail{
+  display:none;position:sticky;top:env(safe-area-inset-top,0px);align-self:start;
+  height:100vh;padding:40px 24px 40px 32px;border-right:1px solid var(--line-soft);
+  overflow-y:auto;
+}
+@media(min-width:1040px){nav.rail{display:block}}
+.rail-mark{
+  font-family:var(--serif);font-weight:500;
+  font-variation-settings:"opsz" 16,"wght" 520;
+  font-size:19px;letter-spacing:.04em;-webkit-font-smoothing:auto;
+  margin-bottom:6px;color:var(--text);display:block;text-decoration:none;
+}
+.rail-sub{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber-dim);margin-bottom:30px;
+}
+.rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.rail a{
+  display:flex;gap:10px;align-items:baseline;position:relative;
+  text-decoration:none;color:var(--text-3);
+  font-size:12.5px;letter-spacing:.02em;padding:5px 0;transition:color .18s ease;
+}
+.rail a:hover,.rail a:focus-visible{color:var(--text)}
+.rail a .n{font-family:var(--mono);font-size:10.5px;color:var(--amber-dim);letter-spacing:.06em}
+.rail a.on{color:var(--text)}
+.rail a.on .n{color:var(--amber)}
+.rail a.on::before{
+  content:"";position:absolute;left:-32px;top:50%;transform:translateY(-50%);
+  width:2px;height:15px;background:var(--amber);
+}
+.rail-foot{
+  margin-top:30px;padding-top:18px;border-top:1px solid var(--line-soft);
+  font-family:var(--mono);font-size:9.5px;line-height:1.7;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--text-3);
+}
+main{min-width:0}
+
+/* ---------- secoes ---------- */
+section{
+  max-width:none;padding-inline:20px;padding-block:84px;position:relative;isolation:isolate;
+  border-bottom:1px solid var(--line-soft);scroll-margin-top:24px;
+}
+@media(min-width:720px){section{padding-inline:56px}}
+@media(min-width:1040px){section{padding-inline:min(88px,7vw)}}
+section:last-of-type{border-bottom:0}
+.in{max-width:var(--maxw);margin-inline:auto;position:relative;z-index:1}
+
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:22px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+
+h1{
+  font-family:var(--serif);font-weight:500;
+  font-variation-settings:"opsz" 32,"wght" 520;
+  font-size:clamp(40px,8.4vw,74px);line-height:1.07;letter-spacing:0;
+  margin:0 0 20px;text-wrap:balance;max-width:14ch;
+  -webkit-font-smoothing:auto;-moz-osx-font-smoothing:auto;
+}
+h2{
+  font-family:var(--serif);font-weight:500;
+  font-variation-settings:"opsz" 20,"wght" 520;
+  font-size:clamp(28px,4.4vw,41px);line-height:1.21;letter-spacing:.002em;
+  margin:0 0 18px;text-wrap:balance;max-width:26ch;
+  -webkit-font-smoothing:auto;-moz-osx-font-smoothing:auto;
+}
+h3{font-family:var(--sans);font-weight:600;font-size:15.5px;letter-spacing:.02em;margin:44px 0 12px;color:var(--text)}
+p{margin:0 0 19px;color:var(--text-2);max-width:68ch}
+p strong{color:var(--text);font-weight:600}
+.lede{font-size:19.5px;line-height:1.58;color:var(--text);max-width:62ch}
+a{color:var(--amber)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:1px solid var(--amber);outline-offset:3px}
+
+ul.plain{list-style:none;margin:0 0 19px;padding:0;display:flex;flex-direction:column;gap:16px}
+ul.plain li{color:var(--text-2);padding-left:22px;position:relative;max-width:68ch}
+ul.plain li::before{content:"";position:absolute;left:0;top:.78em;width:10px;height:1px;background:var(--amber)}
+ul.plain li strong{color:var(--text);font-weight:600}
+
+/* ---------- capa ---------- */
+.cover{border-bottom:1px solid var(--line-soft);padding-block:clamp(120px,26vh,210px) clamp(70px,14vh,120px)}
+.cover .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3);margin-bottom:30px}
+.cover .sub{font-size:19px;color:var(--text-2);max-width:56ch;margin:0 0 34px}
+.confidential{
+  display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:2px;
+  padding:7px 13px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);
+}
+.confidential::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--amber);flex:none}
+
+/* ---------- fundos ---------- */
+section.bg::before{
+  content:"";position:absolute;inset:0;z-index:-2;background-image:var(--bg);
+  background-size:cover;background-position:center;opacity:.38;
+}
+section.bg::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(90deg,rgba(10,16,32,.97) 0%,rgba(10,16,32,.86) 46%,rgba(10,16,32,.55) 100%),
+    linear-gradient(180deg,rgba(10,16,32,.96) 0%,rgba(10,16,32,.88) 16%,rgba(10,16,32,.38) 42%,rgba(10,16,32,.38) 70%,rgba(10,16,32,.92) 100%);
+}
+section.cover.bg::before{opacity:.55}
+@media(max-width:720px){
+  section.bg::before{opacity:.3}
+  section.bg::after{background:linear-gradient(180deg,rgba(10,16,32,.9),rgba(10,16,32,.78))}
+}
+
+/* ---------- stats ---------- */
+.stats{
+  display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:30px 0;
+}
+.stat{background:var(--ground);padding:20px 18px}
+.stat .v{
+  font-family:var(--serif);font-weight:500;
+  font-variation-settings:"opsz" 20,"wght" 520;
+  font-size:clamp(28px,5vw,38px);line-height:1;color:var(--text);font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:auto;-moz-osx-font-smoothing:auto;
+}
+.stat .v span{font-size:.52em;color:var(--amber);margin-left:3px}
+.stat .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--text-3);margin-top:9px;line-height:1.55}
+
+/* ---------- tabelas ---------- */
+.tw{overflow-x:auto;margin:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:440px;font-size:15px}
+th,td{text-align:left;padding:14px 18px 14px 0;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--text-2)}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);font-weight:400;padding-top:15px;padding-bottom:12px}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--text)}
+td.nw{white-space:nowrap}
+td strong{color:var(--text);font-weight:600}
+
+/* ---------- callouts ---------- */
+.note{border-left:2px solid var(--amber-dim);padding:2px 0 2px 18px;margin:26px 0}
+.note p:last-child{margin-bottom:0}
+
+/* ---------- video ---------- */
+.vid{margin:18px 0 6px;max-width:100%}
+.vid iframe{display:block;width:100%;aspect-ratio:16/9;max-width:100%;border:1px solid var(--line-soft);background:#0A1020}
+.vidcap{margin-top:11px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--text-3)}
+.vidcap a{color:var(--amber-dim);text-decoration:none}
+.vidcap a:hover{color:var(--amber)}
+
+/* ---------- progresso ---------- */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--amber);z-index:50;transition:width .08s linear}
+
+footer{
+  max-width:var(--maxw);margin-inline:auto;padding:34px 20px 60px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.07em;line-height:1.9;color:var(--text-3);
+}
+@media(min-width:720px){footer{padding-inline:56px}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  #progress{transition:none}
+  *{animation:none!important;transition:none!important}
+}
+
+/* ---------- painel ---------- */
+.painel{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin:34px 0 8px}
+.painel .cel{background:var(--ground);padding:18px}
+.painel .cel .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:9px}
+.painel .cel .v{font-size:15px;color:var(--text);line-height:1.5}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:2px;
+  padding:5px 11px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);
+}
+.pill::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--text-3);flex:none}
+.pill[data-st="entregue"]::before{background:var(--amber)}
+.pill[data-st="em-revisao"]::before{background:var(--amber-dim)}
+.pill[data-st="rascunho"]::before{background:var(--text-3)}
+
+/* ---------- moodboard ---------- */
+.board{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:34px 0 10px}
+.frame{
+  position:relative;aspect-ratio:16/9;border:1px solid var(--line-soft);overflow:hidden;
+  background:radial-gradient(120% 90% at 78% 18%,rgba(217,165,102,.13),transparent 62%),linear-gradient(168deg,#101A33 0%,#0A1020 74%);
+  margin:0;padding:0;
+}
+.frame.wide{grid-column:1/-1;aspect-ratio:2.6/1}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.frame figcaption{
+  position:absolute;left:12px;right:12px;bottom:10px;z-index:2;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--text-3);
+  text-shadow:0 1px 6px rgba(10,16,32,.9);
+}
+.frame.has-img figcaption{color:var(--text-2)}
+.frame .zoom{position:absolute;inset:0;z-index:1;border:0;padding:0;margin:0;background:transparent;cursor:zoom-in;width:100%;height:100%}
+.frame .zoom:focus-visible{outline:1px solid var(--amber);outline-offset:-2px}
+.board-note{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--text-3);margin:0 0 30px}
+
+/* ---------- lightbox ---------- */
+#lb{position:fixed;inset:0;z-index:90;background:rgba(8,13,24,.96);display:none;align-items:center;justify-content:center;padding:28px}
+#lb.on{display:flex}
+#lb img{max-width:100%;max-height:86vh;object-fit:contain;border:1px solid var(--line)}
+#lb .cap{position:absolute;left:0;right:0;bottom:16px;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);padding-inline:28px}
+#lb .x{position:absolute;top:16px;right:20px;background:none;border:0;color:var(--text-2);font-family:var(--mono);font-size:12px;letter-spacing:.1em;cursor:pointer;padding:8px}
+
+/* ---------- referencias ---------- */
+.refs{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);grid-template-columns:repeat(auto-fit,minmax(270px,1fr));margin:30px 0}
+.ref{background:var(--ground);padding:20px 18px;display:flex;flex-direction:column;gap:9px}
+.ref .n{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--amber-dim)}
+.ref .t{font-family:var(--serif);font-weight:400;font-size:19px;line-height:1.24;color:var(--text);-webkit-font-smoothing:auto}
+.ref .m{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-3);line-height:1.7}
+.ref .w{font-size:14px;line-height:1.6;color:var(--text-2);margin:0}
+.ref .lk{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-dim);text-decoration:none;margin-top:auto;padding-top:6px}
+.ref .lk:hover,.ref .lk:focus-visible{color:var(--amber)}
+
+/* ---------- paleta ---------- */
+.pal{display:flex;flex-wrap:wrap;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin:28px 0}
+.pal .sw{flex:1 1 92px;min-width:0;background:var(--ground);padding:0 0 12px}
+.pal .sw i{display:block;height:64px;background:var(--c)}
+.pal .sw b{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--text-3);font-weight:400;padding:10px 10px 3px}
+.pal .sw em{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--amber-dim);font-style:normal;padding:0 10px}
+
+/* ---------- beats de roteiro ---------- */
+.beats{border-top:1px solid var(--line-soft);margin:30px 0 0}
+.beat{border-bottom:1px solid var(--line-soft);padding-block:24px;display:grid;gap:4px 22px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:720px){.beat{grid-template-columns:78px minmax(0,1fr)}}
+.beat .tc{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;color:var(--amber);padding-top:4px}
+.beat h4{margin:0 0 6px;font-family:var(--sans);font-weight:600;font-size:15.5px;letter-spacing:.02em;color:var(--text)}
+.beat p{margin:0 0 8px;font-size:15px}
+.beat p:last-child{margin-bottom:0}
+.beat .dir{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;line-height:1.75;color:var(--text-3)}
+
+/* ---------- prompts (ficha tecnica das imagens) ---------- */
+details.prompts{border:1px solid var(--line-soft);background:var(--surface);padding:0;margin:30px 0}
+details.prompts summary{
+  cursor:pointer;padding:14px 18px;list-style:none;
+  font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);
+}
+details.prompts summary::-webkit-details-marker{display:none}
+details.prompts summary::after{content:" +";color:var(--text-3)}
+details.prompts[open] summary::after{content:" \2212";color:var(--text-3)}
+details.prompts .bd{padding:0 18px 16px;border-top:1px solid var(--line-soft)}
+details.prompts dl{margin:0;font-size:13.5px}
+details.prompts dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:16px}
+details.prompts dd{margin:6px 0 0;color:var(--text-2);line-height:1.6}
+</style>
+</head>
+<body>
+<div class="shell">
+<nav class="rail" aria-label="Seções">
+<a class="rail-mark" href="../">Insula AI</a>
+<div class="rail-sub">Exemplo</div>
+<ol><li><a href="#painel"><span class="n">01</span> Painel</a></li><li><a href="#visao"><span class="n">02</span> A visão</a></li><li><a href="#tom"><span class="n">03</span> Tom, textura e o que fica de fora</a></li><li><a href="#casting"><span class="n">04</span> Casting e continuidade de personagem</a></li><li><a href="#roteiro"><span class="n">05</span> Decupagem</a></li><li><a href="#arte"><span class="n">06</span> Direção de arte</a></li><li><a href="#referencias"><span class="n">07</span> Referências</a></li><li><a href="#producao"><span class="n">08</span> Produção</a></li></ol>
+<div class="rail-foot">Tratamento<br>Exemplo<br>2026-09-20<br><br>Confidencial</div>
+</nav>
+<main>
+<section class="cover" id="capa">
+<div class="in">
+<div class="cover-inner">
+<p class="kicker">Tratamento de direção · Exemplo · 2026-09-20</p>
+<h1>O silêncio antes da água</h1>
+<p class="sub">Tratamento de demonstração do pipeline. Substitua ou apague esta pasta: ela existe para provar que build, dashboard e geração de imagem funcionam de ponta a ponta.</p>
+<div class="confidential">Documento confidencial · uso restrito</div>
+</div>
+</div>
+</section>
+
+<section id="painel">
+<div class="in">
+<div class="eyebrow"><span>Painel de produção</span></div>
+<div class="painel"><div class="cel"><div class="k">Status</div><div class="v"><span class="pill" data-st="rascunho">Rascunho</span></div></div><div class="cel"><div class="k">Formato</div><div class="v">Filme 30&quot; + 3 cutdowns 6&quot;</div></div><div class="cel"><div class="k">Entrega</div><div class="v">18 dias do aprovado ao master</div></div><div class="cel"><div class="k">Mídia</div><div class="v">TV aberta, YouTube, Meta, OOH digital</div></div><div class="cel"><div class="k">Pipeline</div><div class="v">100% gerado, sem set</div></div><div class="cel"><div class="k">Aprovação</div><div class="v">2 rodadas de ajuste inclusas</div></div></div>
+<div class="stats"><div class="stat"><div class="v">18<span>dias</span></div><div class="k">Do brief ao master</div></div><div class="stat"><div class="v">4<span>peças</span></div><div class="k">Filme + cutdowns</div></div><div class="stat"><div class="v">63<span>%</span></div><div class="k">Economia vs. tradicional</div></div><div class="stat"><div class="v">0</div><div class="k">Diárias de set</div></div></div>
+</div>
+</section>
+
+<section id="visao">
+<div class="in">
+<div class="eyebrow"><span>A visão</span></div>
+<h2>Água não faz barulho quando chega. Faz quando é interrompida.</h2>
+<p class="lede">O filme trabalha contra o clichê do produto de hidratação: nada de respingo em câmera lenta, nada de pele molhada em contraluz. A promessa aqui é silêncio — o estado de quem não precisa mais pensar no assunto.</p>
+<p>A construção é de subtração. Começamos com ruído: cidade, vidro, luz dura, corte curto. A cada beat o filme perde um elemento — primeiro o som ambiente, depois o movimento de câmera, por fim a própria cor saturada. O que sobra no último terço é um plano parado, quente, quieto.</p>
+<p>A água aparece três vezes e nunca como efeito. Aparece como superfície, como reflexo e como ausência. O produto entra no segundo 22, já dentro do silêncio que o filme construiu, e não precisa de locução para explicar o que faz.</p>
+<p>Tecnicamente isso é um filme de luz, não de movimento. É exatamente onde o pipeline generativo da casa entrega craft que a produção convencional cobraria três diárias para alcançar: consistência de personagem e de luz entre planos, ajuste de temperatura de cor por beat, e iteração de enquadramento em horas, não em semanas.</p>
+
+<div class="note"><p>Se o filme funcionar sem locução e sem trilha, funciona. A trilha entra depois, para confirmar — nunca para sustentar.</p></div>
+</div>
+</section>
+
+<section id="tom">
+<div class="in">
+<div class="eyebrow"><span>Tom</span></div>
+<h2>Tom, textura e o que fica de fora</h2>
+<p class="lede">Um filme de publicidade de beleza sem nenhum dos seus tiques de linguagem.</p>
+<p>A regra de ouro do tratamento é negativa: listar o que não entra é mais útil do que descrever o que entra. Nada de macro de gota, nada de slow motion de cabelo, nada de sorriso para a câmera, nada de branco clínico.</p>
+
+<ul class="plain"><li><strong>Luz motivada, sempre.</strong> Toda fonte em quadro tem origem plausível — janela, abajur, tela. Nenhuma luz de estúdio fingindo ser sol.</li><li><strong>Câmera parada por padrão.</strong> O movimento é exceção e ganha sentido por isso: só dois planos se movem no filme inteiro.</li><li><strong>Pele real, poro visível.</strong> A retoque zero. A textura é o argumento do produto — apagá-la contradiz a promessa.</li><li><strong>Silêncio como mixagem.</strong> O desenho de som perde camadas a cada beat. O último terço tem três elementos apenas.</li></ul>
+<div class="note"><p>Este bloco vira a referência de aprovação na revisão: qualquer plano que quebre uma dessas quatro regras volta para ajuste antes de ir ao cliente.</p></div>
+</div>
+</section>
+
+<section id="casting">
+<div class="in">
+<div class="eyebrow"><span>Casting</span></div>
+<h2>Casting e continuidade de personagem</h2>
+<p>Uma protagonista, três idades aparentes ao longo do filme, mesma pessoa. A consistência de rosto entre planos é o ponto técnico mais sensível do projeto e é onde o pipeline da casa foi endurecido: referência de personagem travada, seed fixo por beat e revisão plano a plano antes da montagem.</p>
+
+<div class="tw"><table><thead><tr><th>Beat</th><th>Idade aparente</th><th>Direção de atuação</th></tr></thead><tbody><tr><td>01 — Ruído</td><td>34</td><td>Contida, olhar fora de quadro, nunca para a lente</td></tr><tr><td>02 — Interrupção</td><td>34</td><td>Um único gesto: a mão que para no ar</td></tr><tr><td>03 — Silêncio</td><td>34</td><td>Respiração visível, ombros que descem</td></tr></tbody></table></div>
+</div>
+</section>
+
+<section id="roteiro">
+<div class="in">
+<div class="eyebrow"><span>Decupagem</span></div>
+<h2>Como o filme se move</h2>
+<div class="beats"><div class="beat"><div class="tc">0:00–0:08</div><div><h4>Ruído</h4><p>Cidade em corte curto. Vidro, buzina, luz dura de meio-dia. Sete planos em oito segundos, nenhum com mais de um segundo e meio.</p><p class="dir">Corte seco · som ambiente cheio · 5600K · câmera na mão, discreta</p></div></div><div class="beat"><div class="tc">0:08–0:16</div><div><h4>Interrupção</h4><p>A protagonista para. O ambiente continua, ela não. O som da rua começa a perder camadas — primeiro o agudo, depois o tráfego.</p><p class="dir">Plano fixo 50mm · som subtrativo · 4200K · nenhum corte por oito segundos</p></div></div><div class="beat"><div class="tc">0:16–0:24</div><div><h4>Silêncio</h4><p>Interior. Luz de janela. A água aparece como reflexo numa superfície, nunca como líquido em movimento. O produto entra em quadro sem ser apresentado.</p><p class="dir">Plano fixo 35mm · três elementos de som · 3200K · sem locução</p></div></div><div class="beat"><div class="tc">0:24–0:30</div><div><h4>Assinatura</h4><p>Marca sobre o último plano, sem transição. O filme termina antes que o espectador espere — a sobra de silêncio é intencional.</p><p class="dir">Corte para marca · trilha entra só aqui · 3200K</p></div></div></div>
+</div>
+</section>
+
+<section id="arte">
+<div class="in">
+<div class="eyebrow"><span>Direção de arte</span></div>
+<h2>A cor conta o mesmo arco que o roteiro</h2>
+<p class="lede">A paleta não é decoração: ela é a estrutura. O filme migra de um azul frio e duro para um âmbar quente, e essa migração é o argumento visual da marca.</p>
+<div class="pal"><div class="sw" style="--c:#0A1020"><i></i><b>#0A1020</b><em>Base — noite urbana</em></div><div class="sw" style="--c:#16203C"><i></i><b>#16203C</b><em>Sombra com detalhe</em></div><div class="sw" style="--c:#7F889F"><i></i><b>#7F889F</b><em>Vidro, concreto, meio-tom</em></div><div class="sw" style="--c:#D9A566"><i></i><b>#D9A566</b><em>Acento — a luz que chega</em></div><div class="sw" style="--c:#E9E5DC"><i></i><b>#E9E5DC</b><em>Pele e alta-luz</em></div></div>
+<div class="board"><figure class="frame wide"><figcaption>Beat 01 — ruído — imagem pendente</figcaption></figure><figure class="frame"><figcaption>Beat 02 — interrupção — imagem pendente</figcaption></figure><figure class="frame"><figcaption>Beat 03 — silêncio — imagem pendente</figcaption></figure><figure class="frame"><figcaption>Textura de pele — imagem pendente</figcaption></figure></div>
+<p class="board-note">Imagens geradas pela Insula AI · clique para ampliar</p>
+</div>
+</section>
+
+<section id="referencias">
+<div class="in">
+<div class="eyebrow"><span>Referências</span></div>
+<p class="lede">Quatro referências, cada uma por um motivo técnico específico. Nenhuma está aqui por parecer bonita.</p>
+<div class="refs"><div class="ref"><div class="n">R01</div><div class="t">Fotografia subtrativa em publicidade de beleza</div><div class="m">Estudo de linguagem · 2024 · Referência interna Insula</div><p class="w">Base do princípio de tirar elementos a cada beat em vez de acrescentar. É daqui que sai a regra das quatro negativas.</p></div><div class="ref"><div class="n">R02</div><div class="t">Luz motivada em interiores</div><div class="m">Referência de DF · 2023 · Referência interna Insula</div><p class="w">Define como a janela sustenta o terço final do filme sem nenhuma fonte de estúdio aparecendo.</p></div><div class="ref"><div class="n">R03</div><div class="t">Desenho de som subtrativo</div><div class="m">Referência de mixagem · 2025 · Referência interna Insula</div><p class="w">O arco sonoro do filme é uma perda controlada de camadas. Serve de referência direta para a mixagem.</p></div><div class="ref"><div class="n">R04</div><div class="t">Consistência de personagem em pipeline generativo</div><div class="m">Documentação interna · 2026 · Pipeline Insula</div><p class="w">Protocolo de seed fixo e referência travada usado nos três beats com a protagonista.</p></div></div>
+</div>
+</section>
+
+<section id="producao">
+<div class="in">
+<div class="eyebrow"><span>Produção</span></div>
+<h2>O que a Insula entrega e em quanto tempo</h2>
+<p>O filme é 100% gerado — não há diária de set, talento ou locação. O cronograma abaixo começa na aprovação deste tratamento e termina no master entregue em todos os formatos de mídia.</p>
+
+<div class="tw"><table><thead><tr><th>Fase</th><th>Duração</th><th>Entregável</th></tr></thead><tbody><tr><td>Aprovação do tratamento</td><td>—</td><td>Este documento</td></tr><tr><td>Direção de arte e testes</td><td>4 dias</td><td>Moodboard final e teste de personagem</td></tr><tr><td>Geração e seleção</td><td>7 dias</td><td>Planos aprovados por beat</td></tr><tr><td>Montagem e som</td><td>4 dias</td><td>Corte fechado</td></tr><tr><td>Finalização</td><td>3 dias</td><td>Master 30&quot; + 3 cutdowns</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Nome</th><th>Papel</th><th>Contato</th></tr></thead><tbody><tr><td>Insula AI</td><td>Produção</td><td>contato@insula-ai.com</td></tr></tbody></table></div>
+</div>
+</section>
+
+<section>
+<div class="in">
+<details class="prompts"><summary>Ficha técnica · prompts das imagens</summary><div class="bd"><dl><dt>Capa</dt><dd>Plano geral de uma nascente de água entre pedras escuras ao amanhecer, névoa baixa, primeira luz âmbar rasante atravessando a bruma, água imóvel como espelho.</dd><dt>Visão — fundo</dt><dd>Interior urbano ao entardecer, janela grande, reflexo de água numa superfície de vidro, atmosfera quieta e âmbar, ninguém em quadro.</dd><dt>Moodboard 01</dt><dd>Rua urbana ao meio-dia vista de baixo, vidro espelhado de prédio, luz dura e contrastada, azul frio, movimento desfocado de pessoas.</dd><dt>Moodboard 02</dt><dd>Mulher de 34 anos parada numa calçada movimentada, imóvel enquanto a cidade se move, plano médio 50mm, luz lateral fria.</dd><dt>Moodboard 03</dt><dd>Interior quieto com luz de janela ao fim da tarde, tom âmbar, superfície com reflexo de água, ninguém em quadro.</dd><dt>Moodboard 04</dt><dd>Macro de pele real com poro e textura visíveis, luz suave de janela, sem retoque, tom quente, foco raso.</dd></dl></div></details>
+</div>
+</section>
+<footer>Insula AI · insula-ai.com<br>Tratamento de direção preparado para Exemplo. Material confidencial: o destinatário concorda em manter seu conteúdo restrito à avaliação desta proposta.<br>Todas as imagens desta página foram geradas pela Insula AI.</footer>
+</main>
+</div>
+<div id="progress" aria-hidden="true"></div>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Imagem ampliada"><button class="x" type="button">Fechar ✕</button><img alt=""><div class="cap"></div></div>
+<script>
+(function(){
+  var bar = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+
+  if (bar) {
+    var onScroll = function(){
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      bar.style.width = (max > 0 ? (d.scrollTop / max) * 100 : 0) + '%';
+    };
+    onScroll();
+    addEventListener('scroll', onScroll, {passive:true});
+    addEventListener('resize', onScroll);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var a = map[e.target.id];
+        if (!a) return;
+        if (e.isIntersecting) {
+          links.forEach(function(l){ l.classList.remove('on'); });
+          a.classList.add('on');
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+    Object.keys(map).forEach(function(id){
+      var s = document.getElementById(id);
+      if (s) io.observe(s);
+    });
+  }
+
+  var lb = document.getElementById('lb');
+  if (lb) {
+    var lbImg = lb.querySelector('img');
+    var lbCap = lb.querySelector('.cap');
+    var last = null;
+    var close = function(){
+      lb.classList.remove('on');
+      lbImg.removeAttribute('src');
+      if (last) { last.focus(); last = null; }
+    };
+    document.addEventListener('click', function(ev){
+      var btn = ev.target.closest('.frame .zoom');
+      if (btn) {
+        var img = btn.parentNode.querySelector('img');
+        if (!img) return;
+        last = btn;
+        lbImg.src = img.currentSrc || img.src;
+        lbImg.alt = img.alt || '';
+        lbCap.textContent = btn.getAttribute('data-cap') || '';
+        lb.classList.add('on');
+        lb.querySelector('.x').focus();
+        return;
+      }
+      if (ev.target === lb || ev.target.closest('#lb .x')) close();
+    });
+    document.addEventListener('keydown', function(ev){
+      if (ev.key === 'Escape' && lb.classList.contains('on')) close();
+    });
+  }
+})();
+</script>
+</body>
+</html>

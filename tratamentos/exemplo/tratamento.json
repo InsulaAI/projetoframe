@@ -1,0 +1,272 @@
+{
+  "slug": "exemplo",
+  "titulo": "O silêncio antes da água",
+  "cliente": "Exemplo",
+  "agencia": "Agência Exemplo",
+  "campanha": "Linha Fonte — lançamento 2026",
+  "diretor": "Direção Insula",
+  "data": "2026-09-20",
+  "status": "rascunho",
+  "confidencial": true,
+  "sinopse": "Tratamento de demonstração do pipeline. Substitua ou apague esta pasta: ela existe para provar que build, dashboard e geração de imagem funcionam de ponta a ponta.",
+  "capa": {
+    "arquivo": "img/01-capa.webp",
+    "prompt": "Plano geral de uma nascente de água entre pedras escuras ao amanhecer, névoa baixa, primeira luz âmbar rasante atravessando a bruma, água imóvel como espelho.",
+    "alt": "Nascente de água ao amanhecer"
+  },
+  "painel": {
+    "Formato": "Filme 30\" + 3 cutdowns 6\"",
+    "Entrega": "18 dias do aprovado ao master",
+    "Mídia": "TV aberta, YouTube, Meta, OOH digital",
+    "Pipeline": "100% gerado, sem set",
+    "Aprovação": "2 rodadas de ajuste inclusas"
+  },
+  "metricas": [
+    {
+      "v": "18",
+      "u": "dias",
+      "k": "Do brief ao master"
+    },
+    {
+      "v": "4",
+      "u": "peças",
+      "k": "Filme + cutdowns"
+    },
+    {
+      "v": "63",
+      "u": "%",
+      "k": "Economia vs. tradicional"
+    },
+    {
+      "v": "0",
+      "k": "Diárias de set"
+    }
+  ],
+  "visao": {
+    "titulo": "Água não faz barulho quando chega. Faz quando é interrompida.",
+    "lede": "O filme trabalha contra o clichê do produto de hidratação: nada de respingo em câmera lenta, nada de pele molhada em contraluz. A promessa aqui é silêncio — o estado de quem não precisa mais pensar no assunto.",
+    "paragrafos": [
+      "A construção é de subtração. Começamos com ruído: cidade, vidro, luz dura, corte curto. A cada beat o filme perde um elemento — primeiro o som ambiente, depois o movimento de câmera, por fim a própria cor saturada. O que sobra no último terço é um plano parado, quente, quieto.",
+      "A água aparece três vezes e nunca como efeito. Aparece como superfície, como reflexo e como ausência. O produto entra no segundo 22, já dentro do silêncio que o filme construiu, e não precisa de locução para explicar o que faz.",
+      "Tecnicamente isso é um filme de luz, não de movimento. É exatamente onde o pipeline generativo da casa entrega craft que a produção convencional cobraria três diárias para alcançar: consistência de personagem e de luz entre planos, ajuste de temperatura de cor por beat, e iteração de enquadramento em horas, não em semanas."
+    ],
+    "citacao": "Se o filme funcionar sem locução e sem trilha, funciona. A trilha entra depois, para confirmar — nunca para sustentar.",
+    "imagem": {
+      "arquivo": "img/02-visao-fundo.webp",
+      "prompt": "Interior urbano ao entardecer, janela grande, reflexo de água numa superfície de vidro, atmosfera quieta e âmbar, ninguém em quadro."
+    }
+  },
+  "secoes": [
+    {
+      "id": "tom",
+      "titulo": "Tom, textura e o que fica de fora",
+      "eyebrow": "Tom",
+      "lede": "Um filme de publicidade de beleza sem nenhum dos seus tiques de linguagem.",
+      "paragrafos": [
+        "A regra de ouro do tratamento é negativa: listar o que não entra é mais útil do que descrever o que entra. Nada de macro de gota, nada de slow motion de cabelo, nada de sorriso para a câmera, nada de branco clínico."
+      ],
+      "lista": [
+        {
+          "t": "Luz motivada, sempre.",
+          "d": "Toda fonte em quadro tem origem plausível — janela, abajur, tela. Nenhuma luz de estúdio fingindo ser sol."
+        },
+        {
+          "t": "Câmera parada por padrão.",
+          "d": "O movimento é exceção e ganha sentido por isso: só dois planos se movem no filme inteiro."
+        },
+        {
+          "t": "Pele real, poro visível.",
+          "d": "A retoque zero. A textura é o argumento do produto — apagá-la contradiz a promessa."
+        },
+        {
+          "t": "Silêncio como mixagem.",
+          "d": "O desenho de som perde camadas a cada beat. O último terço tem três elementos apenas."
+        }
+      ],
+      "nota": "Este bloco vira a referência de aprovação na revisão: qualquer plano que quebre uma dessas quatro regras volta para ajuste antes de ir ao cliente."
+    },
+    {
+      "id": "casting",
+      "titulo": "Casting e continuidade de personagem",
+      "eyebrow": "Casting",
+      "paragrafos": [
+        "Uma protagonista, três idades aparentes ao longo do filme, mesma pessoa. A consistência de rosto entre planos é o ponto técnico mais sensível do projeto e é onde o pipeline da casa foi endurecido: referência de personagem travada, seed fixo por beat e revisão plano a plano antes da montagem."
+      ],
+      "tabela": {
+        "cols": [
+          "Beat",
+          "Idade aparente",
+          "Direção de atuação"
+        ],
+        "linhas": [
+          [
+            "01 — Ruído",
+            "34",
+            "Contida, olhar fora de quadro, nunca para a lente"
+          ],
+          [
+            "02 — Interrupção",
+            "34",
+            "Um único gesto: a mão que para no ar"
+          ],
+          [
+            "03 — Silêncio",
+            "34",
+            "Respiração visível, ombros que descem"
+          ]
+        ]
+      }
+    }
+  ],
+  "beats": [
+    {
+      "tc": "0:00–0:08",
+      "titulo": "Ruído",
+      "descricao": "Cidade em corte curto. Vidro, buzina, luz dura de meio-dia. Sete planos em oito segundos, nenhum com mais de um segundo e meio.",
+      "direcao": "Corte seco · som ambiente cheio · 5600K · câmera na mão, discreta"
+    },
+    {
+      "tc": "0:08–0:16",
+      "titulo": "Interrupção",
+      "descricao": "A protagonista para. O ambiente continua, ela não. O som da rua começa a perder camadas — primeiro o agudo, depois o tráfego.",
+      "direcao": "Plano fixo 50mm · som subtrativo · 4200K · nenhum corte por oito segundos"
+    },
+    {
+      "tc": "0:16–0:24",
+      "titulo": "Silêncio",
+      "descricao": "Interior. Luz de janela. A água aparece como reflexo numa superfície, nunca como líquido em movimento. O produto entra em quadro sem ser apresentado.",
+      "direcao": "Plano fixo 35mm · três elementos de som · 3200K · sem locução"
+    },
+    {
+      "tc": "0:24–0:30",
+      "titulo": "Assinatura",
+      "descricao": "Marca sobre o último plano, sem transição. O filme termina antes que o espectador espere — a sobra de silêncio é intencional.",
+      "direcao": "Corte para marca · trilha entra só aqui · 3200K"
+    }
+  ],
+  "arte_titulo": "A cor conta o mesmo arco que o roteiro",
+  "arte_lede": "A paleta não é decoração: ela é a estrutura. O filme migra de um azul frio e duro para um âmbar quente, e essa migração é o argumento visual da marca.",
+  "paleta": [
+    {
+      "hex": "#0A1020",
+      "uso": "Base — noite urbana"
+    },
+    {
+      "hex": "#16203C",
+      "uso": "Sombra com detalhe"
+    },
+    {
+      "hex": "#7F889F",
+      "uso": "Vidro, concreto, meio-tom"
+    },
+    {
+      "hex": "#D9A566",
+      "uso": "Acento — a luz que chega"
+    },
+    {
+      "hex": "#E9E5DC",
+      "uso": "Pele e alta-luz"
+    }
+  ],
+  "moodboard": [
+    {
+      "arquivo": "img/03-moodboard-01.webp",
+      "wide": true,
+      "legenda": "Beat 01 — ruído",
+      "prompt": "Rua urbana ao meio-dia vista de baixo, vidro espelhado de prédio, luz dura e contrastada, azul frio, movimento desfocado de pessoas."
+    },
+    {
+      "arquivo": "img/04-moodboard-02.webp",
+      "legenda": "Beat 02 — interrupção",
+      "prompt": "Mulher de 34 anos parada numa calçada movimentada, imóvel enquanto a cidade se move, plano médio 50mm, luz lateral fria."
+    },
+    {
+      "arquivo": "img/05-moodboard-03.webp",
+      "legenda": "Beat 03 — silêncio",
+      "prompt": "Interior quieto com luz de janela ao fim da tarde, tom âmbar, superfície com reflexo de água, ninguém em quadro."
+    },
+    {
+      "arquivo": "img/06-moodboard-04.webp",
+      "legenda": "Textura de pele",
+      "prompt": "Macro de pele real com poro e textura visíveis, luz suave de janela, sem retoque, tom quente, foco raso."
+    }
+  ],
+  "referencias_lede": "Quatro referências, cada uma por um motivo técnico específico. Nenhuma está aqui por parecer bonita.",
+  "referencias": [
+    {
+      "titulo": "Fotografia subtrativa em publicidade de beleza",
+      "autor": "Estudo de linguagem",
+      "ano": "2024",
+      "fonte": "Referência interna Insula",
+      "porque": "Base do princípio de tirar elementos a cada beat em vez de acrescentar. É daqui que sai a regra das quatro negativas."
+    },
+    {
+      "titulo": "Luz motivada em interiores",
+      "autor": "Referência de DF",
+      "ano": "2023",
+      "fonte": "Referência interna Insula",
+      "porque": "Define como a janela sustenta o terço final do filme sem nenhuma fonte de estúdio aparecendo."
+    },
+    {
+      "titulo": "Desenho de som subtrativo",
+      "autor": "Referência de mixagem",
+      "ano": "2025",
+      "fonte": "Referência interna Insula",
+      "porque": "O arco sonoro do filme é uma perda controlada de camadas. Serve de referência direta para a mixagem."
+    },
+    {
+      "titulo": "Consistência de personagem em pipeline generativo",
+      "autor": "Documentação interna",
+      "ano": "2026",
+      "fonte": "Pipeline Insula",
+      "porque": "Protocolo de seed fixo e referência travada usado nos três beats com a protagonista."
+    }
+  ],
+  "producao": {
+    "titulo": "O que a Insula entrega e em quanto tempo",
+    "paragrafos": [
+      "O filme é 100% gerado — não há diária de set, talento ou locação. O cronograma abaixo começa na aprovação deste tratamento e termina no master entregue em todos os formatos de mídia."
+    ],
+    "tabela": {
+      "cols": [
+        "Fase",
+        "Duração",
+        "Entregável"
+      ],
+      "linhas": [
+        [
+          "Aprovação do tratamento",
+          "—",
+          "Este documento"
+        ],
+        [
+          "Direção de arte e testes",
+          "4 dias",
+          "Moodboard final e teste de personagem"
+        ],
+        [
+          "Geração e seleção",
+          "7 dias",
+          "Planos aprovados por beat"
+        ],
+        [
+          "Montagem e som",
+          "4 dias",
+          "Corte fechado"
+        ],
+        [
+          "Finalização",
+          "3 dias",
+          "Master 30\" + 3 cutdowns"
+        ]
+      ]
+    }
+  },
+  "contatos": [
+    {
+      "nome": "Insula AI",
+      "papel": "Produção",
+      "email": "contato@insula-ai.com"
+    }
+  ]
+}

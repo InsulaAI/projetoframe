@@ -1,0 +1,9 @@
+# Deck de cliente é confidencial e este repositório publica no GitHub Pages.
+# O pipeline lê os .md; o binário original fica fora do versionamento.
+*.pdf
+*.pptx
+*.ppt
+*.key
+*.docx
+*.mov
+*.mp4

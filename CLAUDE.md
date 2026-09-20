@@ -1,18 +1,31 @@
-# projetoframe — InfoMemo Insula AI
+# projetoframe — Insula AI
 
-Página única (`index.html`) servida por GitHub Pages em `https://insulaai.github.io/projetoframe/`.
-É o Information Memorandum da Insula AI para o processo de M&A conduzido pela MAGMA.
-Documento confidencial: `robots.txt` bloqueia indexação e o `<head>` traz `noindex, nofollow, noarchive`.
+Duas coisas moram aqui, no mesmo GitHub Pages (`https://insulaai.github.io/projetoframe/`):
+
+1. **O Information Memorandum** — `index.html` na raiz, página única, para o processo
+   de M&A conduzido pela MAGMA.
+2. **O pipeline de tratamentos** — `tratamentos/`, que gera uma página de tratamento de
+   direção por projeto, mais um dashboard.
+
+Ambos são confidenciais: `robots.txt` bloqueia indexação e todo `<head>` traz
+`noindex, nofollow, noarchive`.
 
 ## Estrutura do repositório
 
 ```
-index.html      página inteira — HTML, CSS e JS inline, sem build
+index.html      o InfoMemo inteiro — HTML, CSS e JS inline, sem build
 img/            10 imagens .webp de fundo (01-capa … 10-mercado), ~510 KB no total
 robots.txt      bloqueio de indexação
+tratamentos/    pipeline de tratamentos de direção — ver tratamentos/README.md
+  _lib/         Python stdlib: craft.py (tokens e CSS), build, dashboard, imagens, verificar
+  _entradas/    briefing.md + notas.md + visao.md por projeto (não publicado: prefixo _)
+  <slug>/       tratamento.json + index.html + img/ gerados
+.claude/skills/tratamento/   a skill que redige o tratamento.json
+.github/workflows/tratamento.yml   a mesma coisa, automática, no push
 ```
 
-Não há build, bundler nem dependência. Editar `index.html` e dar push é o ciclo completo.
+O InfoMemo não tem build: editar `index.html` e dar push é o ciclo completo.
+Os tratamentos têm um pipeline, mas sem dependência — só a stdlib do Python.
 
 ## Convenções
 
@@ -40,14 +53,35 @@ vira pergunta em due diligence.
 
 **Teste de vídeo só vale no endereço publicado.** Abrir o `index.html` local (`file://`) faz o YouTube devolver *Error 153* — embed sem origem válida. Não é bug da página.
 
+## Tratamentos
+
+O `index.html` da raiz é escrito à mão. As páginas em `tratamentos/` **não são** —
+saem de `tratamentos/_lib/build.py` a partir de um `tratamento.json`, e
+`tratamentos/index.html` sai de `dashboard.py`. Editar qualquer um dos dois à mão
+é trabalho que o próximo build apaga.
+
+O CSS dos tratamentos vive em `tratamentos/_lib/craft.py` e repete os tokens do
+InfoMemo. São duas cópias conscientes: o InfoMemo continua sem dependência de
+build, e o pipeline continua servindo a todos os tratamentos de uma vez.
+Mudou um token de cor ou de fonte? Mude nos dois.
+
+Detalhes de esquema, secrets e comandos: `tratamentos/README.md`.
+
 ## Verificação antes de dar push
 
-Vale renderizar com Playwright e conferir:
+No InfoMemo, vale renderizar com Playwright e conferir:
 
 1. Os 6 iframes existem e estão em 16:9 (`document.querySelectorAll('.vid iframe')`)
 2. Sem estouro horizontal em 390px de largura
 3. Sem erro de JavaScript no console
 4. O `#progress` e o `.rail a.on` (seção ativa) respondem ao scroll
+
+Nos tratamentos, essa mesma lista está automatizada:
+
+```bash
+python3 tratamentos/_lib/verificar.py        # tudo
+python3 tratamentos/_lib/verificar.py <slug> # um só
+```
 
 O Google Fonts pode estar bloqueado no ambiente de quem renderiza — nesse caso a Bodoni cai para uma fonte substituta e a tipografia dos títulos não pode ser julgada ali.
 
