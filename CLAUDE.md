@@ -40,11 +40,11 @@ rotulado como marco de origem. A frase não cita o Brilhante — o Natura é bem
 vira pergunta em due diligence.
 
 **O selo Empresa B é marca registrada do B Lab e tem regras próprias.** Ele aparece na
-seção 02 como certificação da Insula AI — decisão do Luciano em 22/09: TRIO Hub e Insula AI
-são a mesma empresa, a primeira é a razão social. O certificado sai em nome da TRIO Hub
-(84,8 pontos, maio de 2024, recertificação em maio de 2027) e o texto do bloco diz isso em
-uma linha, para não abrir discrepância com o PDF do data room. Pelo manual da marca global
-de 2023:
+seção 02 como certificação da Insula AI, sem menção à TRIO Hub — decisão do Luciano em
+22/09: a certificação foi feita no CNPJ da Insula e o nome antigo será atualizado junto ao
+Sistema B. São 84,8 pontos, maio de 2024, recertificação em maio de 2027. Atenção: o
+certificado no data room ainda sai como "TRIO Hub" até a atualização do cadastro.
+Pelo manual da marca global de 2023:
 só em preto ou branco; nunca girado, distorcido, recolorido, com sombra ou contorno;
 nunca combinado com outro logo, palavra ou grafismo de modo a formar marca híbrida;
 sem remover nenhum dos cinco elementos (círculo B, barra de retenção, "Empresa",
