@@ -6,7 +6,7 @@ Documento confidencial: não indexar, não divulgar link.
 ## Estrutura
 
     index.html   página inteira — HTML, CSS e JS inline, sem build
-    img/         10 imagens de fundo (.webp, ~510 KB no total)
+    img/         10 imagens de fundo (.webp, ~510 KB) + o selo Empresa B
     robots.txt   bloqueio de indexação
     CLAUDE.md    convenções, decisões travadas e armadilhas do repositório
 
@@ -33,6 +33,12 @@ o vídeo". É arquitetura do Drive, não permissão nem formato.
 
 Os dois filmes de processo (Brilhante e Clear) ficam fora da página por decisão; a seção
 "O pipeline filmado" mantém o argumento e remete ao data room.
+
+## Selo Empresa B
+
+`img/empresa-b-certificada.webp` é marca registrada do B Lab, usada sob a certificação
+da TRIO Hub. Só pode aparecer em preto ou branco, sem alteração de forma, cor ou
+proporção, e com no mínimo 72 px de altura em tela. Detalhes em `CLAUDE.md`.
 
 ## Publicação
 

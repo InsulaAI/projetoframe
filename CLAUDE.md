@@ -9,6 +9,7 @@ Documento confidencial: `robots.txt` bloqueia indexação e o `<head>` traz `noi
 ```
 index.html      página inteira — HTML, CSS e JS inline, sem build
 img/            10 imagens .webp de fundo (01-capa … 10-mercado), ~510 KB no total
+                + empresa-b-certificada.webp, o selo do B Lab (405×667, branco, alfa)
 robots.txt      bloqueio de indexação
 ```
 
@@ -38,6 +39,21 @@ rotulado como marco de origem. A frase não cita o Brilhante — o Natura é bem
 **O título da seção de cases não menciona "dois anos".** O intervalo real não chega a isso e
 vira pergunta em due diligence.
 
+**O selo Empresa B é marca registrada do B Lab e tem regras próprias.** Ele aparece na
+seção 02, atribuído à TRIO Hub — a entidade certificada (84,8 pontos, maio de 2024,
+recertificação em maio de 2027), não a Insula AI. Pelo manual da marca global de 2023:
+só em preto ou branco; nunca girado, distorcido, recolorido, com sombra ou contorno;
+nunca combinado com outro logo, palavra ou grafismo de modo a formar marca híbrida;
+sem remover nenhum dos cinco elementos (círculo B, barra de retenção, "Empresa",
+"Certificada" e o ®); mínimo de 72 px de altura em página web. O `.bcorp` usa 104 px no
+desktop e 88 px no mobile, com folga de sobra em volta. Dúvida de uso vai para
+brand@bcorporation.net.
+
+O arquivo em `img/` é o logo oficial preto do B Lab com a tinta trocada para branco,
+preservando o alfa — mesma arte, versão permitida para fundo escuro. O branco oficial
+existe no Drive da TRIO (`Empressa-Certificada-Logo-White-RGB.png`) e pode substituí-lo
+sem nenhuma outra mudança.
+
 **Teste de vídeo só vale no endereço publicado.** Abrir o `index.html` local (`file://`) faz o YouTube devolver *Error 153* — embed sem origem válida. Não é bug da página.
 
 ## Verificação antes de dar push
@@ -48,6 +64,7 @@ Vale renderizar com Playwright e conferir:
 2. Sem estouro horizontal em 390px de largura
 3. Sem erro de JavaScript no console
 4. O `#progress` e o `.rail a.on` (seção ativa) respondem ao scroll
+5. O selo `.bcorp img` carrega e fica acima de 72 px de altura nos dois tamanhos
 
 O Google Fonts pode estar bloqueado no ambiente de quem renderiza — nesse caso a Bodoni cai para uma fonte substituta e a tipografia dos títulos não pode ser julgada ali.
 
